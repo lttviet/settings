@@ -1,14 +1,32 @@
-execute pathogen#infect()
-syntax on
-filetype plugin indent on
-set t_Co=256
+set nocompatible               " be iMproved
+filetype off                   " required!
 
-"Line number
-"set nu
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'tpope/vim-fugitive'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'Raimondi/delimitMate'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-sensible'
+Bundle 'wookiehangover/jshint.vim'
+Bundle 'klen/python-mode'
+Bundle 'bling/vim-airline'
+
+filetype plugin indent on     " required!
+
+" Personal configs
+
 set colorcolumn=80
 
 "Tab = 2 spaces
-filetype indent on
 set tabstop=2
 set shiftwidth=2
 set expandtab
