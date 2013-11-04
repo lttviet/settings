@@ -19,6 +19,7 @@ Bundle 'tpope/vim-sensible'
 Bundle 'wookiehangover/jshint.vim'
 Bundle 'klen/python-mode'
 Bundle 'bling/vim-airline'
+Bundle 'ervandew/supertab'
 
 filetype plugin indent on     " required!
 
