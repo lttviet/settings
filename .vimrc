@@ -14,7 +14,6 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'Raimondi/delimitMate'
-Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-sensible'
 Bundle 'wookiehangover/jshint.vim'
 Bundle 'klen/python-mode'
@@ -25,6 +24,7 @@ filetype plugin indent on     " required!
 
 " Personal configs
 
+set hidden
 set colorcolumn=80
 
 "Tab = 2 spaces
@@ -38,5 +38,7 @@ let g:pymode_folding=0
 "Remove trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
-"Powerline font
+"Powerline
 let g:airline_powerline_fonts = 1
+let g:airline_theme = 'molokai'
+let g:airline#extensions#tabline#enabled = 1
