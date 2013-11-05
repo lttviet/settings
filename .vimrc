@@ -14,11 +14,14 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'Raimondi/delimitMate'
-Bundle 'tpope/vim-sensible'
 Bundle 'wookiehangover/jshint.vim'
-Bundle 'klen/python-mode'
 Bundle 'bling/vim-airline'
-Bundle 'ervandew/supertab'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'scrooloose/syntastic'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-sensible'
 
 filetype plugin indent on     " required!
 
@@ -27,13 +30,10 @@ filetype plugin indent on     " required!
 set hidden
 set colorcolumn=80
 
-"Tab = 2 spaces
-set tabstop=2
-set shiftwidth=2
 set expandtab
+set textwidth=78
 
-"Turn off Python folding
-let g:pymode_folding=0
+let mapleader=","
 
 "Remove trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
