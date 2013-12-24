@@ -1,0 +1,14 @@
+[user]
+	name = lttviet
+	email = lttviet@gmail.com
+[color]
+	ui = true
+	status = auto
+	branch = auto
+[core]
+	editor = vim
+	excludesfile = /home/lttviet/.gitignore_global
+[credential]
+	helper = cache --timeout=3600
+[push]
+	default = simple
