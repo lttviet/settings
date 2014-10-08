@@ -115,13 +115,26 @@ fi
 
 # custom alias
 alias update='sudo apt-fast update'
-alias upgrade='sudo apt-fast -y upgrade'
+alias upgrade='sudo apt-fast -y upgrade && sudo apt-fast -y dist-upgrade'
+alias iftop='sudo iftop -B -i wlan0'
 
 # Python
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
 source /usr/local/bin/virtualenvwrapper.sh
 
-### Added by the Heroku Toolbelt
+# Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-### Custom PS1
+# Add .cabal to PATH
+export PATH="$HOME/.cabal/bin:$PATH"
+
+# Editor
+export VISUAL=vim
+export EDITOR=$VISUAL
+
+# Add /alg4/bin to PATH
+export PATH="$HOME/algs4/bin:$PATH"
+
+# Custom PS1
 PS1="\[\e[0;1m\]┌─( \[\e[31;1m\]\u\[\e[0;1m\] ) - ( \[\e[36;1m\]\w\[\e[0;1m\] )\n└──┤ \[\e[0m\]"
