@@ -117,24 +117,29 @@ fi
 alias update='sudo apt-fast update'
 alias upgrade='sudo apt-fast -y upgrade && sudo apt-fast -y dist-upgrade'
 alias iftop='sudo iftop -B -i wlan0'
-
-# Python
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
-
-# Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-# Add .cabal to PATH
-export PATH="$HOME/.cabal/bin:$PATH"
+alias iotop='sudo iotop'
+alias vi='nvim'
 
 # Editor
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR=$VISUAL
-
-# Add /alg4/bin to PATH
-export PATH="$HOME/algs4/bin:$PATH"
+export TERM="xterm-256color"
 
 # Custom PS1
 PS1="\[\e[0;1m\]┌─( \[\e[31;1m\]\u\[\e[0;1m\] ) - ( \[\e[36;1m\]\w\[\e[0;1m\] )\n└──┤ \[\e[0m\]"
+
+# Add rbenv to PATH
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+### Add Heroku to PATH
+export PATH="/usr/local/heroku/bin:$PATH"
+
+### Todotxt cli
+export TODOTXT_DEFAULT_ACTION=ls
+alias t='./todo/todo.sh -d ./todo/todo.cfg'
+
+### virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh

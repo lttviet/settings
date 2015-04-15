@@ -1,8 +1,8 @@
-set nocompatible              " be iMproved, required
+set nocompatible               " be iMproved, required
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=~/.nvim/bundle/Vundle.vim
+call vundle#begin('~/.nvim/bundle')
 
 Plugin 'gmarik/Vundle.vim'
 
@@ -14,18 +14,17 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
-Plugin 'tomasr/molokai'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/MatchTagAlways'
+Plugin 'morhetz/gruvbox'
 
 call vundle#end()            " required
 filetype plugin indent on     " required!
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
+syntax on
+set hlsearch
+set background=dark
+colorscheme gruvbox
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
@@ -42,17 +41,16 @@ set nobackup
 set number
 set hidden
 set colorcolumn=80
-set tabstop=4
+set tabstop=2
 set expandtab
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 
 "Remove trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
 "Airline
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'molokai'
 let g:airline#extensions#tabline#enabled = 1
 
 "EasyMotion
@@ -70,4 +68,4 @@ map <Leader>h <Plug>(easymotion-linebackward)
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 "YCM
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.nvim/.ycm_extra_conf.py'
