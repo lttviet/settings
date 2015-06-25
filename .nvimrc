@@ -1,7 +1,7 @@
 set nocompatible               " be iMproved, required
 filetype off                   " required!
 
-set rtp+=~/.nvim/bundle/Vundle.vim
+set rtp+=~/.nvim/bundle/vundle
 call vundle#begin('~/.nvim/bundle')
 
 Plugin 'gmarik/Vundle.vim'

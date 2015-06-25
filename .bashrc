@@ -119,6 +119,7 @@ alias upgrade='sudo apt-fast -y upgrade && sudo apt-fast -y dist-upgrade'
 alias iftop='sudo iftop -B -i wlan0'
 alias iotop='sudo iotop'
 alias vi='nvim'
+alias vim='nvim'
 
 # Editor
 export VISUAL=nvim
@@ -137,7 +138,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 ### Todotxt cli
 export TODOTXT_DEFAULT_ACTION=ls
-alias t='./todo/todo.sh -d ./todo/todo.cfg'
+alias t='~/todo/todo.sh -d ~/todo/todo.cfg'
+source ~/todo/todo_completion
 
 ### virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
