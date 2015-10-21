@@ -132,6 +132,7 @@ PS1="\[\e[0;1m\]┌─( \[\e[31;1m\]\u\[\e[0;1m\] ) - ( \[\e[36;1m\]\w\[\e[0;1m\
 # Add rbenv to PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+export PATH="$HOME/.gem/ruby/2.2.0/bin:$PATH"
 
 ### Add Heroku to PATH
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -145,3 +146,7 @@ source ~/todo/todo_completion
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source /usr/local/bin/virtualenvwrapper.sh
+
+# NVM
+export NVM_DIR="/home/lttviet/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

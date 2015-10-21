@@ -4,7 +4,7 @@ filetype off                   " required!
 set rtp+=~/.nvim/bundle/vundle
 call vundle#begin('~/.nvim/bundle')
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " original repos on github
 Plugin 'tpope/vim-sensible'
@@ -17,6 +17,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Valloric/MatchTagAlways'
 Plugin 'morhetz/gruvbox'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 call vundle#end()            " required
 filetype plugin indent on     " required!
