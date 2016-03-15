@@ -137,11 +137,6 @@ export PATH="$HOME/.gem/ruby/2.2.0/bin:$PATH"
 ### Add Heroku to PATH
 export PATH="/usr/local/heroku/bin:$PATH"
 
-### Todotxt cli
-export TODOTXT_DEFAULT_ACTION=ls
-alias t='~/todo/todo.sh -d ~/todo/todo.cfg'
-source ~/todo/todo_completion
-
 ### virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel

@@ -8,13 +8,14 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'kien/ctrlp.vim'
 Plug 'Valloric/MatchTagAlways'
 Plug 'morhetz/gruvbox'
-Plug 'lervag/vimtex'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py'}
 
 Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on' : 'NERDTreeToggle' }
 
 Plug 'tpope/vim-rails', { 'for' : 'ruby' }
+
+Plug 'elixir-lang/vim-elixir'
 
 call plug#end()
 
