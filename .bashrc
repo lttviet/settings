@@ -114,8 +114,8 @@ if ! shopt -oq posix; then
 fi
 
 # custom alias
-alias update='sudo apt-fast update'
-alias upgrade='sudo apt-fast -y upgrade && sudo apt-fast -y dist-upgrade'
+alias update='sudo apt update'
+alias upgrade='sudo apt -y full-upgrade'
 alias iftop='sudo iftop -B -i wlan0'
 alias iotop='sudo iotop'
 alias vi='nvim'
@@ -142,6 +142,6 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source /usr/local/bin/virtualenvwrapper.sh
 
-# NVM
-export NVM_DIR="/home/lttviet/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export PATH="$HOME/.local/share/umake/nodejs/nodejs-lang/bin:$PATH"
+
+export PATH="$HOME/.local/bin:$PATH"
