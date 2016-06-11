@@ -16,6 +16,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin', { 'on' : 'NERDTreeToggle' }
 Plug 'tpope/vim-rails', { 'for' : 'ruby' }
 
 Plug 'elixir-lang/vim-elixir'
+Plug 'lambdatoast/elm.vim'
 
 call plug#end()
 
