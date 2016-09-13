@@ -40,3 +40,7 @@ Thumbs.db
 # Python files #
 # ##############
 .ropeproject/*
+
+# Syncthing versioning #
+# #########
+.stfolder
