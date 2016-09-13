@@ -127,7 +127,7 @@ export EDITOR=$VISUAL
 export TERM="xterm-256color"
 
 # Custom PS1
-PS1="\[\e[0;1m\]┌─( \[\e[31;1m\]\u\[\e[0;1m\] ) - ( \[\e[36;1m\]\w\[\e[0;1m\] )\n└──┤ \[\e[0m\]"
+PS1="\[\e[0;1m\]┌─( \[\e[31;1m\]\u@\h\[\e[0;1m\] ) - ( \[\e[36;1m\]\w\[\e[0;1m\] )\n└──┤ \[\e[0m\]"
 
 # Add rbenv to PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
