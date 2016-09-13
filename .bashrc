@@ -145,3 +145,5 @@ source /usr/local/bin/virtualenvwrapper.sh
 export PATH="$HOME/.local/share/umake/nodejs/nodejs-lang/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
+
+shopt -s histverify # don't automatically execute
