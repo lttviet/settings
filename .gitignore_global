@@ -39,7 +39,8 @@ Thumbs.db
 
 # Python files #
 # ##############
-.ropeproject/*
+.ropeproject
+__pycache__
 
 # Syncthing versioning #
 # #########
