@@ -44,3 +44,7 @@ Thumbs.db
 # Syncthing versioning #
 # #########
 .stfolder
+
+# Node
+# #####
+node_modules
