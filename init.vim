@@ -5,7 +5,6 @@ Plug 'bling/vim-airline'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/syntastic'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'kien/ctrlp.vim'
 Plug 'Valloric/MatchTagAlways'
 Plug 'morhetz/gruvbox'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py'}
@@ -15,8 +14,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin', { 'on' : 'NERDTreeToggle' }
 
 Plug 'tpope/vim-rails', { 'for' : 'ruby' }
 
-Plug 'elixir-lang/vim-elixir'
-Plug 'lambdatoast/elm.vim'
 
 call plug#end()
 
