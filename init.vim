@@ -14,7 +14,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin', { 'on' : 'NERDTreeToggle' }
 
 Plug 'tpope/vim-rails', { 'for' : 'ruby' }
 
-
 call plug#end()
 
 syntax on
@@ -56,3 +55,6 @@ let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 "map esc to escape in terminal mode
 tnoremap <Esc> <C-\><C-n>
+
+"python3 syntastic
+let g:syntastic_python_python_exec = '/usr/bin/python3'
