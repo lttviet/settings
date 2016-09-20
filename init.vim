@@ -58,3 +58,6 @@ tnoremap <Esc> <C-\><C-n>
 
 "python3 syntastic
 let g:syntastic_python_python_exec = '/usr/bin/python3'
+
+"go to previous buffer then delete last buffer
+nnoremap <Leader>q :bp<cr>:bd #<cr>
