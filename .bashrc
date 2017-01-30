@@ -57,7 +57,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[[01;32m\]\u@\h\[[00m\]:\[[01;34m\]\w\[[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -66,7 +66,7 @@ unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\]$PS1"
     ;;
 *)
     ;;
@@ -115,9 +115,10 @@ fi
 
 # custom alias
 alias update='sudo apt update'
-alias upgrade='sudo apt -y full-upgrade'
+alias upgrade='sudo apt -y full-upgrade && sudo snap refresh'
 alias iftop='sudo iftop -B -i wlan0'
 alias iotop='sudo iotop'
+alias nethogs='sudo nethogs'
 alias vi='nvim'
 alias vim='nvim'
 
@@ -127,7 +128,8 @@ export EDITOR=$VISUAL
 export TERM="xterm-256color"
 
 # Custom PS1
-PS1="\[\e[0;1m\]┌─( \[\e[31;1m\]\u@\h\[\e[0;1m\] ) - ( \[\e[36;1m\]\w\[\e[0;1m\] )\n└──┤ \[\e[0m\]"
+PS1="\[\e[0;1m\]┌─( \[\e[31;1m\]\u@\h\[\e[0;1m\] ) - ( \[\e[36;1m\]\w\[\e[0;1m\] )
+└──┤ \[\e[0m\]"
 
 # Add rbenv to PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -140,10 +142,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 ### virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
-
-export PATH="$HOME/.local/share/umake/nodejs/nodejs-lang/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 
 shopt -s histverify # don't automatically execute
+. "/home/lttviet/.acme.sh/acme.sh.env"

@@ -7,12 +7,13 @@ Plug 'scrooloose/syntastic'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Valloric/MatchTagAlways'
 Plug 'morhetz/gruvbox'
+Plug 'vimwiki/vimwiki'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py'}
 
 Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on' : 'NERDTreeToggle' }
 
-Plug 'tpope/vim-rails', { 'for' : 'ruby' }
+"Plug 'tpope/vim-rails', { 'for' : 'ruby' }
 
 call plug#end()
 
