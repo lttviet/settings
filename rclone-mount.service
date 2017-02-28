@@ -1,0 +1,14 @@
+[Unit]
+Description=Rclone mount gd
+Documentation=man:rclone(1)
+After=network.target
+
+[Service]
+ExecStart=/home/lttviet/.local/bin/rclone mount secret: /home/lttviet/h --read-only -q
+Restart=on-failure
+ExecStop=/bin/fusermount -u /home/lttviet/h
+SuccessExitStatus=3 4
+RestartForceExitStatus=3 4
+
+[Install]
+WantedBy=default.target
