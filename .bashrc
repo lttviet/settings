@@ -116,7 +116,6 @@ fi
 # custom alias
 alias update='sudo apt update'
 alias upgrade='sudo apt -y full-upgrade && sudo snap refresh'
-alias iftop='sudo iftop -B -i wlan0'
 alias iotop='sudo iotop'
 alias nethogs='sudo nethogs'
 alias vi='nvim'
@@ -134,16 +133,16 @@ PS1="\[\e[0;1m\]┌─( \[\e[31;1m\]\u@\h\[\e[0;1m\] ) - ( \[\e[36;1m\]\w\[\e[0;
 # Add rbenv to PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-export PATH="$HOME/.gem/ruby/2.3.0/bin:$PATH"
 
-### Add Heroku to PATH
-export PATH="/usr/local/heroku/bin:$PATH"
-
-### virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-
-export PATH="$HOME/.local/bin:$PATH"
+# Add pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 shopt -s histverify # don't automatically execute
 . "/home/lttviet/.acme.sh/acme.sh.env"
+
+# rclone
+export RCLONE_TRANSFERS=20
+export RCLONE_DRIVE_CHUNK_SIZE=128M

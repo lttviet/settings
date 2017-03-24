@@ -4,7 +4,7 @@ Documentation=man:rclone(1)
 After=network.target
 
 [Service]
-ExecStart=/home/lttviet/.local/bin/rclone mount secret: /home/lttviet/h --read-only -q
+ExecStart=/home/lttviet/.local/bin/rclone mount secret: /home/lttviet/drive --allow-other --default-permissions --drive-use-trash -v
 Restart=on-failure
 ExecStop=/bin/fusermount -u /home/lttviet/h
 SuccessExitStatus=3 4
