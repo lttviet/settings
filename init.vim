@@ -13,7 +13,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py'}
 Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on' : 'NERDTreeToggle' }
 
-"Plug 'tpope/vim-rails', { 'for' : 'ruby' }
+Plug 'fatih/vim-go'
 
 call plug#end()
 

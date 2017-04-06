@@ -144,5 +144,8 @@ shopt -s histverify # don't automatically execute
 . "/home/lttviet/.acme.sh/acme.sh.env"
 
 # rclone
-export RCLONE_TRANSFERS=20
+export RCLONE_TRANSFERS=5
 export RCLONE_DRIVE_CHUNK_SIZE=128M
+
+# go
+export GOPATH=$HOME/go
