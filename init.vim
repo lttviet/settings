@@ -1,3 +1,9 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin()
 
 Plug 'Raimondi/delimitMate'
@@ -9,6 +15,7 @@ Plug 'Valloric/MatchTagAlways'
 Plug 'morhetz/gruvbox'
 Plug 'vimwiki/vimwiki'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py'}
+Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on' : 'NERDTreeToggle' }
@@ -65,3 +72,6 @@ nnoremap <Leader>q :bp<cr>:bd #<cr>
 
 "vimwiki
 let g:vimwiki_list = [{'path': '~/Repo/vimwiki'}]
+
+"go
+au BufNewFile,BufRead *.go setlocal ts=8 sw=8 sts=8

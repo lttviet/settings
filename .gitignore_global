@@ -66,3 +66,8 @@ pip-selfcheck.json
 # Node
 # #####
 node_modules
+
+# Latex
+# ######
+*.aux
+*.out
