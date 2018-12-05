@@ -149,4 +149,3 @@ export RCLONE_TRANSFERS=20
 # go
 export GOPATH=$HOME/go
 export PATH=$PATH:$(go env GOPATH)/bin
-export GOBIN=$HOME/go/bin
