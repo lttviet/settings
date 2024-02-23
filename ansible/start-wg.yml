@@ -1,6 +1,5 @@
 - name: Update dockers and up
-  hosts: composers
-  become: yes # Escalate privilege
+  hosts: wg
   tasks:
     - name: Git pull
       ansible.builtin.git:

@@ -1,6 +1,5 @@
 - name: Update dockers and up
-  hosts: composers
-  become: yes # Escalate privilege
+  hosts: cloudflared
   tasks:
     - name: Git pull
       ansible.builtin.git:
