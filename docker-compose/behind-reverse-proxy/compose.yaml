@@ -1,0 +1,85 @@
+services:
+  sillytavern:
+    image: ghcr.io/sillytavern/sillytavern:${SILLYTAVERN_TAG}
+    restart: unless-stopped
+    container_name: sillytavern
+    command: node server.js --disableCsrf
+    volumes:
+      - /mnt/configs/sillytavern/config:/home/node/app/config
+      - /mnt/configs/sillytavern/user:/home/node/app/public/user
+      - /mnt/configs/sillytavern/extensions:/home/node/app/public/scripts/extensions/third-party
+    labels:
+      - traefik.http.routers.sillytavern.rule=Host(`${SILLYTAVERN_HOST}`)
+
+  homepage:
+    image: ghcr.io/gethomepage/homepage:${HOMEPAGE_TAG}
+    restart: unless-stopped
+    container_name: homepage
+    environment:
+      PUID: 1000
+      PGID: 1000
+    volumes:
+      - /mnt/configs/homepage:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - traefik.http.routers.homepage.rule=Host(`${HOMEPAGE_HOST}`)
+
+  navidrome:
+    image: deluan/navidrome:${NAVIDROME_TAG}
+    restart: unless-stopped
+    container_name: navidrome
+    user: 1000:1000
+    volumes:
+      - /mnt/media/music:/music:ro
+      - /mnt/configs/navidrome:/data
+    labels:
+      - traefik.http.routers.navidrome.rule=Host(`${NAVIDROME_HOST}`)
+
+  pyload-ng:
+    image: lscr.io/linuxserver/pyload-ng:${PYLOAD_TAG}
+    restart: unless-stopped
+    container_name: pyload-ng
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+    volumes:
+      - /mnt/configs/pyload-ng:/config
+      - /mnt/download:/downloads
+    labels:
+      - traefik.http.routers.pyload-ng.rule=Host(`${PYLOAD_HOME}`)
+
+  traefik:
+    image: traefik:${TRAEFIK_TAG}
+    restart: unless-stopped
+    container_name: traefik
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /mnt/configs/traefik/traefik.yaml:/traefik.yml:ro
+      - /mnt/configs/traefik/acme.json:/acme.json
+    labels:
+      - traefik.http.routers.dashboard.rule=Host(`${TRAEFIK_TAG}`)
+      - traefik.http.routers.dashboard.service=api@internal
+
+  diun:
+    image: crazymax/diun:latest
+    restart: unless-stopped
+    container_name: diun
+    command: serve
+    environment:
+      - "TZ=America/New_York"
+      - "DIUN_WATCH_WORKERS=20"
+      - "DIUN_WATCH_SCHEDULE=0 */6 * * *"
+      - "DIUN_WATCH_JITTER=30s"
+      - "DIUN_WATCH_FIRSTCHECKNOTIF=true"
+      - "DIUN_PROVIDERS_DOCKER=true"
+      - "DIUN_PROVIDERS_DOCKER_WATCHBYDEFAULT=true"
+      - "DIUN_NOTIF_DISCORD_WEBHOOKURL=${DIUN_NOTIF_DISCORD_WEBHOOKURL}"
+      - "DIUN_NOTIF_DISCORD_MENTIONS=@here"
+    volumes:
+      - /mnt/configs/diun:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - traefik.enable=false
