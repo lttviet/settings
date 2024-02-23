@@ -1,0 +1,15 @@
+- name: Update dockers and up
+  hosts: composers
+  become: yes # Escalate privilege
+  tasks:
+    - name: Git pull
+      ansible.builtin.git:
+        repo: https://github.com/lttviet/settings.git
+        dest: /home/runner/settings
+    - name: Run `docker-compose up`
+      community.docker.docker_compose_v2:
+        project_src: /home/runner/settings/behind-reverse-proxy
+      register: output
+    - name: Show results
+      ansible.builtin.debug:
+        var: output
