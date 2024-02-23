@@ -1,10 +1,11 @@
 - name: Update dockers and up
   hosts: wg
   tasks:
-    - name: Git pull
-      ansible.builtin.git:
-        repo: https://github.com/lttviet/settings.git
-        dest: /home/runner/settings
+    - name: Copy settings repo folder
+      ansible.builtin.copy:
+        src: /mnt/configs/settings
+        dest: /home/runner
+        mode: '0644'
     - name: Run `docker-compose up`
       community.docker.docker_compose_v2:
         project_src: /home/runner/settings/docker-compose/wg-easy
