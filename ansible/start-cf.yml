@@ -1,14 +1,14 @@
 - name: Update dockers and up
   hosts: cloudflared
   tasks:
-    - name: Copy settings repo folder
+    - name: Copy compose and env files
       ansible.builtin.copy:
-        src: /mnt/configs/settings
+        src: /mnt/configs/settings/docker-compose/cloudflared/
         dest: /home/runner
         mode: '0644'
     - name: Run `docker-compose up`
       community.docker.docker_compose_v2:
-        project_src: /home/runner/settings/docker-compose/cloudflared
+        project_src: /home/runner
       register: output
     - name: Show results
       ansible.builtin.debug:

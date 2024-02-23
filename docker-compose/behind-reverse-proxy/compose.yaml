@@ -47,7 +47,7 @@ services:
       - /mnt/configs/pyload-ng:/config
       - /mnt/download:/downloads
     labels:
-      - traefik.http.routers.pyload-ng.rule=Host(`${PYLOAD_HOME}`)
+      - traefik.http.routers.pyload-ng.rule=Host(`${PYLOAD_HOST}`)
 
   traefik:
     image: traefik:${TRAEFIK_TAG}
