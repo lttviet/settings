@@ -1,5 +1,5 @@
 - name: Update dockers and up
-  hosts: behind
+  hosts: behind-reverse-proxy
   tasks:
     - name: Git pull
       ansible.builtin.git:

@@ -1,0 +1,11 @@
+ungrouped:
+  hosts:
+    behind-reverse-proxy:
+      ansible_host: behind.lan
+    wg:
+      ansible_host: wireguard.lan
+    cloudflared:
+      ansible_host: cloudflared.lan
+  vars:
+    ansible_connection: ssh
+    ansible_user: runner
