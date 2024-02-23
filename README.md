@@ -1,4 +1,4 @@
-dotfiles
-========
+settings
+===
 
-These are dotfiles for home pc only, not for server.
+Settings to automate my home lab.
