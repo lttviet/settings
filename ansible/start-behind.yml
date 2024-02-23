@@ -7,7 +7,7 @@
         dest: /home/runner/settings
     - name: Run `docker-compose up`
       community.docker.docker_compose_v2:
-        project_src: /home/runner/settings/behind-reverse-proxy
+        project_src: /home/runner/settings/docker-compose/behind-reverse-proxy
       register: output
     - name: Show results
       ansible.builtin.debug:
