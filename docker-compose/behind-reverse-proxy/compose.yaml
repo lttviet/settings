@@ -74,12 +74,14 @@ services:
       - "DIUN_WATCH_SCHEDULE=0 */6 * * *"
       - "DIUN_WATCH_JITTER=30s"
       - "DIUN_WATCH_FIRSTCHECKNOTIF=true"
+      - "DIUN_DEFAULTS_WATCHREPO=true"
+      - "DIUN_DEFAULTS_INCLUDETAGS=^latest$"
       - "DIUN_PROVIDERS_DOCKER=true"
       - "DIUN_PROVIDERS_DOCKER_WATCHBYDEFAULT=true"
       - "DIUN_NOTIF_DISCORD_WEBHOOKURL=${DIUN_NOTIF_DISCORD_WEBHOOKURL}"
       - "DIUN_NOTIF_DISCORD_MENTIONS=@here"
     volumes:
-      - /mnt/configs/diun:/data
+      - /home/runner/diun:/data
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
       - traefik.enable=false
