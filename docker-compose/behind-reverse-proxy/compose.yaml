@@ -1,9 +1,15 @@
+x-default: &default
+  restart: unless-stopped
+
+x-user: &nonroot-user
+  user: 1000:1000
+
 services:
   sillytavern:
+    <<: [*default]
     image: ghcr.io/sillytavern/sillytavern:${SILLYTAVERN_TAG}
-    restart: unless-stopped
     container_name: sillytavern
-    command: node server.js --disableCsrf
+    command: node server.js
     volumes:
       - /mnt/configs/sillytavern/config:/home/node/app/config
       - /mnt/configs/sillytavern/user:/home/node/app/public/user
@@ -12,8 +18,8 @@ services:
       - traefik.http.routers.sillytavern.rule=Host(`${SILLYTAVERN_HOST}`)
 
   homepage:
+    <<: [*default]
     image: ghcr.io/gethomepage/homepage:${HOMEPAGE_TAG}
-    restart: unless-stopped
     container_name: homepage
     environment:
       PUID: 1000
@@ -25,10 +31,9 @@ services:
       - traefik.http.routers.homepage.rule=Host(`${HOMEPAGE_HOST}`)
 
   navidrome:
+    <<: [*default, *nonroot-user]
     image: deluan/navidrome:${NAVIDROME_TAG}
-    restart: unless-stopped
     container_name: navidrome
-    user: 1000:1000
     volumes:
       - /mnt/media/music:/music:ro
       - /mnt/configs/navidrome:/data
@@ -36,8 +41,8 @@ services:
       - traefik.http.routers.navidrome.rule=Host(`${NAVIDROME_HOST}`)
 
   pyload-ng:
+    <<: *default
     image: lscr.io/linuxserver/pyload-ng:${PYLOAD_TAG}
-    restart: unless-stopped
     container_name: pyload-ng
     environment:
       - PUID=1000
@@ -50,8 +55,8 @@ services:
       - traefik.http.routers.pyload-ng.rule=Host(`${PYLOAD_HOST}`)
 
   traefik:
+    <<: [*default]
     image: traefik:${TRAEFIK_TAG}
-    restart: unless-stopped
     container_name: traefik
     ports:
       - 80:80
@@ -64,8 +69,8 @@ services:
       - traefik.http.routers.dashboard.service=api@internal
 
   diun:
+    <<: [*default]
     image: crazymax/diun:latest
-    restart: unless-stopped
     container_name: diun
     command: serve
     environment:

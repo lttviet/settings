@@ -1,13 +1,16 @@
+x-default: &default
+  restart: unless-stopped
+
 services:
   cloudflared:
+    <<: *default
     image: cloudflare/cloudflared:${CLOUDFLARED_TAG}
-    restart: unless-stopped
     container_name: cloudflared
     command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN}
 
   diun:
+    <<: *default
     image: crazymax/diun:latest
-    restart: unless-stopped
     container_name: diun
     command: serve
     environment:

@@ -1,7 +1,10 @@
+x-default: &default
+  restart: unless-stopped
+
 services:
   wg-easy:
+    <<: *default
     image: ghcr.io/wg-easy/wg-easy:${WG_TAG}
-    restart: unless-stopped
     environment:
       - WG_HOST=${WG_HOST}
       - PASSWORD=${WG_PASSWORD}
@@ -20,8 +23,8 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
 
   diun:
+    <<: *default
     image: crazymax/diun:latest
-    restart: unless-stopped
     container_name: diun
     command: serve
     environment:
