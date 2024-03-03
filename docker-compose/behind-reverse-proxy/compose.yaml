@@ -16,6 +16,11 @@ services:
       - /mnt/configs/sillytavern/extensions:/home/node/app/public/scripts/extensions/third-party
     labels:
       - traefik.http.routers.sillytavern.rule=Host(`${SILLYTAVERN_HOST}`)
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: ${FLUENTD_HOST}
+        tag: sillytavern
 
   homepage:
     <<: [*default]
@@ -29,6 +34,11 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
       - traefik.http.routers.homepage.rule=Host(`${HOMEPAGE_HOST}`)
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: ${FLUENTD_HOST}
+        tag: homepage
 
   navidrome:
     <<: [*default, *nonroot-user]
@@ -39,6 +49,11 @@ services:
       - /mnt/configs/navidrome:/data
     labels:
       - traefik.http.routers.navidrome.rule=Host(`${NAVIDROME_HOST}`)
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: ${FLUENTD_HOST}
+        tag: navidrome
 
   pyload-ng:
     <<: *default
@@ -53,6 +68,11 @@ services:
       - /mnt/download:/downloads
     labels:
       - traefik.http.routers.pyload-ng.rule=Host(`${PYLOAD_HOST}`)
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: ${FLUENTD_HOST}
+        tag: pyload-ng
 
   traefik:
     <<: [*default]
@@ -67,6 +87,11 @@ services:
     labels:
       - traefik.http.routers.dashboard.rule=Host(`${TRAEFIK_TAG}`)
       - traefik.http.routers.dashboard.service=api@internal
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: ${FLUENTD_HOST}
+        tag: traefik
 
   diun:
     <<: [*default]
@@ -90,3 +115,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
       - traefik.enable=false
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: ${FLUENTD_HOST}
+        tag: behind-rp.diun
