@@ -6,6 +6,8 @@ ungrouped:
       ansible_host: wireguard.lan
     cloudflared:
       ansible_host: cloudflared.lan
+    log-collector:
+      ansible_host: log-collector.lan
   vars:
     ansible_connection: ssh
     ansible_user: runner

@@ -7,6 +7,11 @@ services:
     image: cloudflare/cloudflared:${CLOUDFLARED_TAG}
     container_name: cloudflared
     command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN}
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: ${FLUENTD_HOST}
+        tag: cloudflared
 
   diun:
     <<: *default
@@ -28,3 +33,8 @@ services:
     volumes:
       - /home/runner/diun:/data
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: ${FLUENTD_HOST}
+        tag: cloudflared.diun
