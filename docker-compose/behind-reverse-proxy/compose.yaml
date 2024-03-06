@@ -22,6 +22,21 @@ services:
         fluentd-address: ${FLUENTD_HOST}
         tag: sillytavern
 
+  oai:
+    image: khanonci/oai-reverse-proxy:${OAI_TAG}
+    env_file:
+      - ./.oai.env
+    volumes:
+      - /mnt/configs/oai/greeting.md:/app/greeting.md
+      - /mnt/configs/oai/data:/app/data
+    labels:
+      - traefik.http.routers.oai.rule=Host(`${OAI_HOST}`)
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: ${FLUENTD_HOST}
+        tag: oai
+
   homepage:
     <<: [*default]
     image: ghcr.io/gethomepage/homepage:${HOMEPAGE_TAG}
