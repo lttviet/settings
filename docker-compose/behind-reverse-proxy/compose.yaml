@@ -100,7 +100,7 @@ services:
       - /mnt/configs/traefik/traefik.yaml:/traefik.yml:ro
       - /mnt/configs/traefik/acme.json:/acme.json
     labels:
-      - traefik.http.routers.dashboard.rule=Host(`${TRAEFIK_TAG}`)
+      - traefik.http.routers.dashboard.rule=Host(`${TRAEFIK_HOST}`)
       - traefik.http.routers.dashboard.service=api@internal
     logging:
       driver: "fluentd"
