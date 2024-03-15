@@ -1,29 +1,29 @@
 variable "username" {
   type    = string
-  default = null
+  default = "packer@pve"
 }
 
 variable "password" {
   type    = string
-  default = null
+  default = "packer@pve"
 }
 
 variable "pve_host" {
   type    = string
-  default = null
+  default = "homelab.lan:8006"
 }
 
 variable "node" {
   type    = string
-  default = null
+  default = "homelab"
 }
 
 variable "ssh_username" {
   type    = string
-  default = null
+  default = "viet"
 }
 
 variable "ssh_password" {
   type    = string
-  default = null
+  default = "vietviet"
 }

@@ -1,0 +1,23 @@
+#cloud-config
+autoinstall:
+  version: 1
+  identity:
+    hostname: ubuntu-vm
+    username: viet
+    # mkpasswd -m sha-512
+    password: '$6$Tl/IMJ0ptYfFyMDJ$A9L8YwtZ/3HHLoWWrmGmc3Zreih.2of6.AoHlwVWzubNVla9zVPTP1egNvzKC1nPXY1vVZpY/Xpx2Ffv.8jT8/'
+  apt:
+    geoip: true
+  ssh:
+    install-server: yes
+    allow-pw: yes
+  package_update: true
+  package_upgrade: true
+  package_reboot_if_required: true
+  updates: all
+  packages:
+    - curl
+    - ca-certificates
+    - qemu-guest-agent  # needed for packer ssh
+  late-commands:
+    - echo 'viet ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/viet # don't ask password for sudo
