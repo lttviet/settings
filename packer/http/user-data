@@ -19,5 +19,6 @@ autoinstall:
     - curl
     - ca-certificates
     - qemu-guest-agent  # needed for packer ssh
+    - cifs-utils # to mount samba for shared files
   late-commands:
     - echo 'viet ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/viet # don't ask password for sudo

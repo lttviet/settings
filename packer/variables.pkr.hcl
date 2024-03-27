@@ -27,3 +27,18 @@ variable "ssh_password" {
   type    = string
   default = "vietviet"
 }
+
+variable "samba_server" {
+  type    = string
+  default = "fileserver.lan"
+}
+
+variable "samba_username" {
+  type    = string
+  default = "samba"
+}
+
+variable "samba_password" {
+  type    = string
+  default = "samba_password"
+}

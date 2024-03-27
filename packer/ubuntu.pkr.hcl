@@ -12,9 +12,9 @@ source "proxmox-iso" "ubuntu" {
   template_name        = "ubuntu-22.04.4"
   template_description = "Ubuntu 22.04.4, generated on ${timestamp()}"
   os                   = "l26"
-  cores                = 4
+  cores                = 8
   cpu_type             = "x86-64-v2-AES"
-  memory               = 4096
+  memory               = 6144
 
   iso_file    = "local:iso/ubuntu-22.04.4-live-server-amd64.iso"
   unmount_iso = true
@@ -58,7 +58,11 @@ build {
 
   provisioner "shell" {
     inline = [
-      "sudo curl -sfL https://get.k3s.io | sh -"
+      # install k3s
+      "sudo curl -sfL https://get.k3s.io | sh -",
+      # mount samba
+      "sudo mkdir /mnt/configs",
+      "echo '//${var.samba_server}/configs /mnt/configs cifs username=${var.samba_username},password=${var.samba_password},uid=1000,gid=1000 0 0' | sudo tee -a /etc/fstab"
     ]
   }
 }
