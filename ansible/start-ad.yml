@@ -1,0 +1,15 @@
+- name: Update dockers and up
+  hosts: adguard
+  tasks:
+    - name: Copy compose and env files
+      ansible.builtin.copy:
+        src: /mnt/configs/settings/docker-compose/adguard/
+        dest: /home/runner
+        mode: '0644'
+    - name: Run `docker-compose up`
+      community.docker.docker_compose_v2:
+        project_src: /home/runner
+      register: output
+    - name: Show results
+      ansible.builtin.debug:
+        var: output

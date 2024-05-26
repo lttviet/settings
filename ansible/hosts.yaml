@@ -8,6 +8,8 @@ ungrouped:
       ansible_host: cloudflared.lan
     log-collector:
       ansible_host: log-collector.lan
+    adguard:
+      ansible_host: adguard.lan
   vars:
     ansible_connection: ssh
     ansible_user: runner
