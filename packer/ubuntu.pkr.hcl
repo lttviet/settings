@@ -9,14 +9,14 @@ packer {
 
 source "proxmox-iso" "ubuntu" {
   vm_name              = "ubuntu-vm"
-  template_name        = "ubuntu-22.04.4"
-  template_description = "Ubuntu 22.04.4, generated on ${timestamp()}"
+  template_name        = "ubuntu-24.04"
+  template_description = "Ubuntu 24.04, generated on ${timestamp()}"
   os                   = "l26"
   cores                = 8
   cpu_type             = "x86-64-v2-AES"
   memory               = 6144
 
-  iso_file    = "local:iso/ubuntu-22.04.4-live-server-amd64.iso"
+  iso_file    = "local:iso/ubuntu-24.04-live-server-amd64.iso"
   unmount_iso = true
 
   node                     = var.node
