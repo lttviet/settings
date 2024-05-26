@@ -1,0 +1,17 @@
+x-default: &default
+  restart: unless-stopped
+
+services:
+  adguard-home:
+    <<: *default
+    image: adguard/adguardhome:latest
+    network_mode: "host"
+    container_name: adguard-home
+    volumes:
+      - /mnt/configs/adguard/work:/opt/adguardhome/work
+      - /mnt/configs/adguard/conf:/opt/adguardhome/conf
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: ${FLUENTD_HOST}
+        tag: adguard

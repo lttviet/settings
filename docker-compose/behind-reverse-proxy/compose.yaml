@@ -7,13 +7,12 @@ x-user: &nonroot-user
 services:
   sillytavern:
     <<: [*default]
-    build: ./SillyTavern
+    image: ghcr.io/sillytavern/sillytavern:${SILLYTAVERN_TAG}
     container_name: sillytavern
-    command: node server.js
+    command: node server.js --disableCsrf
     volumes:
       - /mnt/configs/sillytavern/config:/home/node/app/config
-      - /mnt/configs/sillytavern/user:/home/node/app/public/user
-      - /mnt/configs/sillytavern/extensions:/home/node/app/public/scripts/extensions/third-party
+      - /mnt/configs/sillytavern/data:/home/node/app/data
     labels:
       - traefik.http.routers.sillytavern.rule=Host(`${SILLYTAVERN_HOST}`)
     logging:
@@ -22,20 +21,20 @@ services:
         fluentd-address: ${FLUENTD_HOST}
         tag: sillytavern
 
-  oai:
-    image: khanonci/oai-reverse-proxy:${OAI_TAG}
-    env_file:
-      - ./.oai.env
-    volumes:
-      - /mnt/configs/oai/greeting.md:/app/greeting.md
-      - /mnt/configs/oai/data:/app/data
-    labels:
-      - traefik.http.routers.oai.rule=Host(`${OAI_HOST}`)
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: ${FLUENTD_HOST}
-        tag: oai
+  # oai:
+  #   image: khanonci/oai-reverse-proxy:${OAI_TAG}
+  #   env_file:
+  #     - ./.oai.env
+  #   volumes:
+  #     - /mnt/configs/oai/greeting.md:/app/greeting.md
+  #     - /mnt/configs/oai/data:/app/data
+  #   labels:
+  #     - traefik.http.routers.oai.rule=Host(`${OAI_HOST}`)
+  #   logging:
+  #     driver: "fluentd"
+  #     options:
+  #       fluentd-address: ${FLUENTD_HOST}
+  #       tag: oai
 
   homepage:
     <<: [*default]
