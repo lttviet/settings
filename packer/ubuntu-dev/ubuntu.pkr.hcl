@@ -8,13 +8,14 @@ packer {
 }
 
 source "proxmox-iso" "ubuntu" {
-  vm_name              = "ubuntu-vm"
+  vm_name              = "ubuntu-dev"
   template_name        = "ubuntu-24.04"
   template_description = "Ubuntu 24.04, generated on ${timestamp()}"
   os                   = "l26"
   cores                = 8
   cpu_type             = "x86-64-v2-AES"
-  memory               = 6144
+  memory               = 8192
+  scsi_controller      = "virtio-scsi-single"
 
   iso_file    = "local:iso/ubuntu-24.04-live-server-amd64.iso"
   unmount_iso = true
@@ -36,12 +37,9 @@ source "proxmox-iso" "ubuntu" {
     disk_size    = "10G"
     storage_pool = "local-zfs"
     type         = "scsi"
-  }
-
-  efi_config {
-    efi_storage_pool  = "local-zfs"
-    efi_type          = "4m"
-    pre_enrolled_keys = true
+    discard      = true
+    ssd          = true
+    io_thread    = true
   }
 
   network_adapters {
@@ -55,14 +53,4 @@ build {
   sources = [
     "source.proxmox-iso.ubuntu"
   ]
-
-  provisioner "shell" {
-    inline = [
-      # install k3s
-      "sudo curl -sfL https://get.k3s.io | sh -",
-      # mount samba
-      "sudo mkdir /mnt/configs",
-      "echo '//${var.samba_server}/configs /mnt/configs cifs username=${var.samba_username},password=${var.samba_password},uid=1000,gid=1000 0 0' | sudo tee -a /etc/fstab"
-    ]
-  }
 }

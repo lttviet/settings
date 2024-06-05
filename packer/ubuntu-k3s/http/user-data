@@ -5,7 +5,7 @@ autoinstall:
     hostname: ubuntu-vm
     username: viet
     # mkpasswd -m sha-512
-    password: '$6$Tl/IMJ0ptYfFyMDJ$A9L8YwtZ/3HHLoWWrmGmc3Zreih.2of6.AoHlwVWzubNVla9zVPTP1egNvzKC1nPXY1vVZpY/Xpx2Ffv.8jT8/'
+    password: '$6$V4MkUqr2UICs4w2G$63XwL7wFuvF7b2k7L5faZ/L1tRt/hIGBYonA/yhhyejBlMja1R8zSXOd9Tu.SEylJIjFlucb1SaO0RbdiYdex0'
   apt:
     geoip: true
   ssh:
