@@ -53,4 +53,24 @@ build {
   sources = [
     "source.proxmox-iso.ubuntu"
   ]
+
+  provisioner "file" {
+    source      = "./upload/key.txt"
+    destination = "/home/viet/"
+  }
+
+  provisioner "file" {
+    source      = "./upload/init.sh"
+    destination = "/home/viet/"
+  }
+
+  provisioner "shell" {
+    inline = [
+      "sudo bash /home/viet/init.sh",
+      "rm /home/viet/init.sh",
+      # TODO move credentials to a file
+      "echo '//${var.samba_server}/configs /mnt/configs cifs username=${var.samba_username},password=${var.samba_password},uid=1000,gid=1000 0 0' | sudo tee -a /etc/fstab",
+      "echo '//${var.samba_server}/repos /mnt/repos cifs username=${var.samba_username},password=${var.samba_password},uid=1000,gid=1000 0 0' | sudo tee -a /etc/fstab"
+    ]
+  }
 }
