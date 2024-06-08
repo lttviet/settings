@@ -1,0 +1,3 @@
+creation_rules:
+  - path_regex: variables\.json$
+    age: "age1502nsq9wdlyhf94vdxtzedn4ulsqqr044lhmzdf3775ltvaylstsxw6705"
