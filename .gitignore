@@ -1,4 +1,3 @@
 *.env
-*.auto.pkrvars.hcl
 key.txt
 plaintext.json
