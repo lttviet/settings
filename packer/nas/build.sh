@@ -6,4 +6,6 @@ if [ -z $SOPS_AGE_KEY_FILE ]; then
 fi
 
 sops -d variables.json > plaintext.json
+packer validate -var-file="plaintext.json" .
+packer fmt -var-file="plaintext.json" .
 packer build -var-file="plaintext.json" .
