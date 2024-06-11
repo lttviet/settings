@@ -60,16 +60,11 @@ build {
   }
 
   provisioner "shell" {
-    inline = [
-      "echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections",
-      "sudo apt-get install samba -y",
-      "sudo mkdir -p /shares/configs /shares/download /shares/repos /shares/media /shares/logs",
-      "sudo adduser --system --group ${var.samba_username}",
-      "sudo chmod 775 -R /shares",
-      "sudo chown ${var.samba_username}:${var.samba_username} -R /shares",
-      "echo '${var.samba_password}\n${var.samba_password}' | sudo smbpasswd -a -s ${var.samba_username}",
-      "sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.old",
-      "sudo mv /tmp/smb.conf /etc/samba/smb.conf"
+    script = "./upload/init.sh"
+    execute_command = "sudo bash -c '{{ .Vars }} {{ .Path }}'"
+    environment_vars = [
+      "SAMBA_USERNAME=${var.samba_username}",
+      "SAMBA_PASSWORD=${var.samba_password}",
     ]
   }
 }

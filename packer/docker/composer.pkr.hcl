@@ -55,18 +55,22 @@ build {
   ]
 
   provisioner "file" {
-    source      = "./upload/init.sh"
-    destination = "/home/viet/"
+    content     = "username=${var.samba_username}\npassword=${var.samba_password}"
+    destination = "/home/viet/.smbcredentials"
+  }
+
+  provisioner "shell" {
+    script = "./upload/init.sh"
+    execute_command = "sudo bash -c '{{ .Vars }} {{ .Path }}'"
+    environment_vars = [
+      "SAMBA_SERVER=${var.samba_server}",
+      "SSH_USERNAME=${var.ssh_username}"
+    ]
   }
 
   provisioner "shell" {
     inline = [
-      "sudo bash ./init.sh",
-      "rm ./init.sh",
-      # move credentials to a file
-      "echo '//${var.samba_server}/configs /mnt/configs cifs username=${var.samba_username},password=${var.samba_password},uid=1000,gid=1000 0 0' | sudo tee -a /etc/fstab",
-      "echo '//${var.samba_server}/repos /mnt/repos cifs username=${var.samba_username},password=${var.samba_password},uid=1000,gid=1000 0 0' | sudo tee -a /etc/fstab",
-      "sudo usermod -aG docker ${var.ssh_username}"
+      "chmod 600 ./.smbcredentials"
     ]
   }
 }

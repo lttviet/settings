@@ -15,6 +15,9 @@ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main" -y
 sudo apt-get update && sudo apt-get install packer -y
 
+echo 'Installing samba'
 sudo mkdir -p /mnt/configs /mnt/repos
+echo "//$SAMBA_SERVER/configs /mnt/configs cifs credentials=/home/viet/.smbcredentials,uid=1000,gid=1000 0 0" | sudo tee -a /etc/fstab
+echo "//$SAMBA_SERVER/repos /mnt/repos cifs credentials=/home/viet/.smbcredentials,uid=1000,gid=1000 0 0" | sudo tee -a /etc/fstab
 
 echo 'export SOPS_AGE_KEY_FILE=/home/viet/key.txt' | tee -a /home/viet/.profile

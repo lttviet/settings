@@ -1,9 +1,9 @@
-variable "username" {
+variable "proxmox_username" {
   type    = string
   default = "packer@pve"
 }
 
-variable "password" {
+variable "proxmox_password" {
   type    = string
   default = "packer@pve"
 }
@@ -15,7 +15,7 @@ variable "pve_host" {
 
 variable "node" {
   type    = string
-  default = "homelab"
+  default = "homelab2"
 }
 
 variable "ssh_username" {
@@ -25,12 +25,12 @@ variable "ssh_username" {
 
 variable "ssh_password" {
   type    = string
-  default = "vietviet"
+  default = "password"
 }
 
 variable "samba_server" {
   type    = string
-  default = "fileserver.lan"
+  default = "192.168.100.1"
 }
 
 variable "samba_username" {
@@ -40,5 +40,5 @@ variable "samba_username" {
 
 variable "samba_password" {
   type    = string
-  default = "samba_password"
+  default = "password"
 }
