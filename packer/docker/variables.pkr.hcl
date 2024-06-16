@@ -4,8 +4,8 @@ variable "proxmox_username" {
 }
 
 variable "proxmox_password" {
-  type    = string
-  default = "packer@pve"
+  type      = string
+  default   = "packer@pve"
   sensitive = true
 }
 
@@ -25,8 +25,8 @@ variable "ssh_username" {
 }
 
 variable "ssh_password" {
-  type    = string
-  default = "password"
+  type      = string
+  default   = "password"
   sensitive = true
 }
 
@@ -41,7 +41,7 @@ variable "samba_username" {
 }
 
 variable "samba_password" {
-  type    = string
-  default = "password"
+  type      = string
+  default   = "password"
   sensitive = true
 }

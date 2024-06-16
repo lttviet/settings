@@ -60,17 +60,11 @@ build {
   }
 
   provisioner "shell" {
-    script = "./upload/init.sh"
+    script          = "./upload/init.sh"
     execute_command = "sudo bash -c '{{ .Vars }} {{ .Path }}'"
     environment_vars = [
       "SAMBA_SERVER=${var.samba_server}",
       "SSH_USERNAME=${var.ssh_username}"
-    ]
-  }
-
-  provisioner "shell" {
-    inline = [
-      "chmod 600 ./.smbcredentials"
     ]
   }
 }
