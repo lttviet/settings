@@ -8,10 +8,7 @@ services:
     network_mode: "host"
     container_name: adguard-home
     volumes:
-      - /mnt/configs/adguard/work:/opt/adguardhome/work
-      - /mnt/configs/adguard/conf:/opt/adguardhome/conf
+      - ./work:/opt/adguardhome/work
+      - ./conf:/opt/adguardhome/conf
     logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: ${FLUENTD_HOST}
-        tag: adguard
+      driver: local
