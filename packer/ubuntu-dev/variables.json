@@ -1,13 +1,13 @@
 {
-	"pve_host": "ENC[AES256_GCM,data:wM8qxn/tIK7JKMm+4bBu0w==,iv:Ca+oYaDjhAsQuhm6sfAb/TAWmRFV+wV2ZaLJOAU/osE=,tag:VZCyunjB59vPHT0R7eIapw==,type:str]",
-	"node": "ENC[AES256_GCM,data:wGesjPtS9GM=,iv:qW1TnsFFarQs5Rtgrbu6RgttXCHiAtsWvEDxCMQW7TA=,tag:MtrMToN2I/jVlETIYvNV5A==,type:str]",
-	"proxmox_username": "ENC[AES256_GCM,data:cDFeBgXTMoIepw==,iv:goBwTuJWvAxkqBgvPmSOrLCW68d4XR6cIM1NNKSSVVs=,tag:37s8xs8XzvannzixIlIeyQ==,type:str]",
-	"proxmox_password": "ENC[AES256_GCM,data:+O7Q2JdQ2fG36g==,iv:OAw6jb4i0tJMHyDKi1KknrlLatOrFbPtXES/V9dkDQU=,tag:aLaj4+c1Wq3ybSdxc7JpUg==,type:str]",
-	"ssh_username": "ENC[AES256_GCM,data:cPBVAQ==,iv:fxf6DA/TvbwKRHjBBVou94jYfhSuHgG87eevc0R9x68=,tag:Wc5Oh9Q8lZq0hNrqhQE54A==,type:str]",
-	"ssh_password": "ENC[AES256_GCM,data:vkv2VfEUxEW2dw==,iv:uR6BYL2EedeyBEW9K6yxgUEfPepzomyOwBMp2cLADtg=,tag:aIhwDWWte8ncEWiNCelnNw==,type:str]",
-	"samba_server": "ENC[AES256_GCM,data:kHLSg8dZdg4Sm6fKruFs,iv:wqiXD9Af8H/VbU7ur8JJxB4KDo6dEyWMayuuJTdy8Ag=,tag:9dOiIdpPvoe5q32AsaTjcg==,type:str]",
-	"samba_username": "ENC[AES256_GCM,data:bXq6pBukbjsQ,iv:iS39NC9BQqXcWu2rBOTpVJldRRHkzcBxG2Mow30yP24=,tag:N19NfWfYeEdZmjdPevPw0Q==,type:str]",
-	"samba_password": "ENC[AES256_GCM,data:YE0nJAHFa6k=,iv:+aLB0uOKwHeTBHC8f2Yzr1QUC+ZeS/V+4Vmb6WFhfiI=,tag:1jhVPMlsQUj1MX+ptMXdcQ==,type:str]",
+	"pve_host": "ENC[AES256_GCM,data:XEzmUxf7Wb6b/oNp8vkJlg==,iv:kpxd0Drad6V5nl3o9CrWMfZ2R4DLxzgdCTV8Zz5Aam8=,tag:nUONfGq65oc+WG6WugCHfg==,type:str]",
+	"node": "ENC[AES256_GCM,data:JEi2nCFRBjw=,iv:qw5e8H5yseBdrsALI0NsseRq4OcSgIUqX9FCltl7keU=,tag:tx+NLsV3fZqBds1+wOFSiw==,type:str]",
+	"proxmox_username": "ENC[AES256_GCM,data:zdGypmmf+ac/oA==,iv:Uao9ziD1PgeFMdbqBzOq4rQrAIogWaoqpbye0tl+DYc=,tag:SO+goBHts5oAcLA9JEFwUw==,type:str]",
+	"proxmox_password": "ENC[AES256_GCM,data:9JpYTnegqHg1Dw==,iv:gVWi4MPKFGgMu7LxMp6eQiR3r22fO4v4J0aD6qx/alw=,tag:7BQNyLxB9JwDxAqktBki2g==,type:str]",
+	"ssh_username": "ENC[AES256_GCM,data:Bh05xQ==,iv:LlhPXbGgo9p1a8QPsoSrjMzHkt1KLk6u5I9psMLISPI=,tag:+ZXCtabov7zkEwNW7TLTvQ==,type:str]",
+	"ssh_password": "ENC[AES256_GCM,data:gwStYux0PS4Yjg==,iv:VrC3trJST2MFOLb4ini4ZOv1yAVUUy68yYxjDs0wWTY=,tag:RPtfus3D7w6/sGNgzfrBvA==,type:str]",
+	"samba_server": "ENC[AES256_GCM,data:VasR1sSl9Dek6CoRHCtq,iv:6hGGnIyuqwAsTA0FOE+P9ePJE+YC/0tAojkyhVdngRo=,tag:onDiH6EfNjrFJ1I284gUgw==,type:str]",
+	"samba_username": "ENC[AES256_GCM,data:WIQd7ozQazcQ,iv:eh+wtVMXiaBqS/WuZiN6sViE4H6ZO6vKO3/Z1ZMLAuI=,tag:n4Gjp/+VTZyoEn57HRZl9g==,type:str]",
+	"samba_password": "ENC[AES256_GCM,data:2h5KMWryVMY=,iv:uZSGIzSmVNxVIlS9j13TfZ7sdHS3i03MMi3k+kc9Qww=,tag:THfkdrBwwPMcgIoRmo8waA==,type:str]",
 	"sops": {
 		"kms": null,
 		"gcp_kms": null,
@@ -16,11 +16,11 @@
 		"age": [
 			{
 				"recipient": "age1502nsq9wdlyhf94vdxtzedn4ulsqqr044lhmzdf3775ltvaylstsxw6705",
-				"enc": "-----BEGIN AGE ENCRYPTED FILE-----\nYWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA1ZjNQV3U1cWZtb2tQSHlw\nZ3VVaFc3TmliZXVjZ3ZlTGRGcVJSN2RSdFNRCkJCdHVFd1ExdTgvRG9NOXNEakM4\nTjJBb2g2UjhXWlB0dzcyR3FMemdsK2sKLS0tIFJHTnI3TVVwdmJ6Nm85VzR5cmFx\nY1Nnb2xoZmtoaWRWT2lQWVV6Nkg5MDgKc+XGO3X0OPVpCpqJxldJuC5dZxZgPSuR\n1tUjpfceMqCU2pLkLd9e+vR2tpqRZIwhfOTtK1DlGkBvPLI14V2J2g==\n-----END AGE ENCRYPTED FILE-----\n"
+				"enc": "-----BEGIN AGE ENCRYPTED FILE-----\nYWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBxSTVvQ0dXdHNZd1VlQTJ4\nbm81QWo5d0RIWXI5WUNXWXRXSmxmWklmOFVvCml4VjdLU2MvamRJK25WWk5LOGVq\nMFdNTFhoelJKaXR1ZDFQNmhlc1p4eUUKLS0tIEdCWHlsRXp5SVpReFp3QWlrditk\nTlpWamhDRVhnVU43V0dEYmRLeE1wUFkKa2kq8eztlDZwSRe1gy5d4Qx3UXxprfOC\niCfsyoDKNeNximBLZd8Aq5C25miJJR+KJrBKRKbbu847bIPl84qEbw==\n-----END AGE ENCRYPTED FILE-----\n"
 			}
 		],
-		"lastmodified": "2024-06-08T02:56:26Z",
-		"mac": "ENC[AES256_GCM,data:I3gqxqV7GQJwfl3QF/En9ER+LWqWiHvd5IRlz5vHYEzsOaPFsebo+c3EBWuWUFzjtn7locTW0XqcnZ/16AssuxybQYfTrnQdJMWXXQm6lMj+XDjh/y0N659glrD9sVqcMS1JbHkvsV2/jwFZfG8az38F7duR1Lavzp6UB1p3CCw=,iv:HBl05PH8ccaMD7pPo1+22IgSkgZ31C/Y5xC6Oe531ns=,tag:lF/sIW/qG2C3VP4SMFozhA==,type:str]",
+		"lastmodified": "2024-06-16T20:44:21Z",
+		"mac": "ENC[AES256_GCM,data:5BOiJPG3qAxmETll9+SBjwh/3vix1b/WijtlwRRpbeztQSgcXCY8GASX4vnSH06Prtv3UnjpXIsuH0X+o3Iqrua10sNK5D7/f13Vx9olu1xpycdwO6EtgLI8o+h7y5+zs3h26cdzdeTBFFh/NbfkduP7n0Q0sBG+1HMOkDaZ05k=,iv:/Pzjp+c8F4j8NCLmCQh91SeZxp1MbrvMX56Drk1E99k=,tag:Hua+6B2wcRsvMB26DQKg2g==,type:str]",
 		"pgp": null,
 		"unencrypted_suffix": "_unencrypted",
 		"version": "3.8.1"

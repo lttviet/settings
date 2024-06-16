@@ -21,3 +21,5 @@ echo "//$SAMBA_SERVER/configs /mnt/configs cifs credentials=/home/viet/.smbcrede
 echo "//$SAMBA_SERVER/repos /mnt/repos cifs credentials=/home/viet/.smbcredentials,uid=1000,gid=1000 0 0" | sudo tee -a /etc/fstab
 
 echo 'export SOPS_AGE_KEY_FILE=/home/viet/key.txt' | tee -a /home/viet/.profile
+
+chmod 600 ./.smbcredentials
