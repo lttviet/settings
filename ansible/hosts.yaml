@@ -1,7 +1,7 @@
 ungrouped:
   hosts:
     behind-reverse-proxy:
-      ansible_host: behind-rp.lan
+      ansible_host: 192.168.100.104
     wg:
       ansible_host: wireguard.lan
     cloudflared:

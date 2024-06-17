@@ -3,12 +3,12 @@
   tasks:
     - name: Copy compose and env files
       ansible.builtin.copy:
-        src: /mnt/configs/settings/docker-compose/behind-reverse-proxy/
-        dest: /home/runner
+        src: /mnt/repos/settings/docker-compose/behind-reverse-proxy/
+        dest: /home/viet/
         mode: "0644"
     - name: Run `docker-compose up`
       community.docker.docker_compose_v2:
-        project_src: /home/runner
+        project_src: /home/viet
         pull: always
         build: always
       register: output
