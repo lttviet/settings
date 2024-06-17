@@ -1,0 +1,49 @@
+services:
+    adguard-home:
+        restart: unless-stopped
+        image: adguard/adguardhome:latest
+        network_mode: host
+        container_name: adguard-home
+        volumes:
+            - ./work:/opt/adguardhome/work
+            - ./conf:/opt/adguardhome/conf
+        logging:
+            driver: local
+    adguardhome-sync:
+        restart: unless-stopped
+        image: ghcr.io/bakito/adguardhome-sync
+        container_name: adguardhome-sync
+        command: run
+        environment:
+            LOG_LEVEL: info
+            ORIGIN_URL: http://192.168.0.20
+            ORIGIN_USERNAME: ENC[AES256_GCM,data:lyOrSJA=,iv:Q5qrbhvQid+B9GfPCcQCe4Z4dPKMiBXdvATG0RHyvdk=,tag:IQXSR2vFuiRYvil9EFnfSg==,type:str]
+            ORIGIN_PASSWORD: ENC[AES256_GCM,data:CmoZ+EwolTWxiyY=,iv:AsfkfIqdfNvMtwRtF8zb0DN4U5U2Bs3kCFFZmMK5pp4=,tag:aRJ3nTBAjhrpLl5MMHUElw==,type:str]
+            REPLICA1_URL: http://192.168.0.21
+            REPLICA1_USERNAME: ENC[AES256_GCM,data:cXT0sig=,iv:fURD3ym75cSidn306rySMjJWKyBEAfa8I3G4zfuUv0U=,tag:t7gFMj5dKKeoF0x3NnURbA==,type:str]
+            REPLICA1_PASSWORD: ENC[AES256_GCM,data:kVzX3US7/r0VbN0=,iv:8NdD3oNaEFNu3/tILaYPjTHhdFN7w6vQMZ7BEtJ5qSA=,tag:nen/bEj0FzHR8lvkXBF3og==,type:str]
+            # run every 10 minutes
+            CRON: 0 */2 * * *
+            API_PORT: 8080
+        ports:
+            - 8080:8080
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1502nsq9wdlyhf94vdxtzedn4ulsqqr044lhmzdf3775ltvaylstsxw6705
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA4Ymd6Uk9VbnFWZDBXQW41
+            Q2MwQXdDYVZtQjBpckhQTEtZaFVlbU1tQTBBCjBnL0d0Z1lMenJJalpCdGVYRDVy
+            OUN3Qmt4UkMxaVFRU0JBSWhxbjFBWjQKLS0tIGNqMGw4TnZKL2VWVWtjdkZ3NXNm
+            ampSWUpTNWpiK1VTd0FKdVBmZHVPVlkKcnMLF6Zq3ZCdcPZedOXopgkunQT9k0Tt
+            MqyQSRDpKbk1h+Kl203EIqSI2SPdZbB0Mg127Lfpw8IbaCl3Ll+3VQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-06-17T01:10:51Z"
+    mac: ENC[AES256_GCM,data:c5va+UNdLBvGb4/jhwx2RKIglI0UJbFHpdUCstIQ3VpD5lBTjyWNKS60iA42mZxESVUl1ZdpiUX2JwOqUZP++l6+wb9Jo53UsRDxbk3+yitc5oOSF9fNfeochlGJzLeFvH26H3bw8JPZAiDefSvLRI7KDEOk4MpWPej2S1aucJM=,iv:xskjLunUZJZGqGakwVrzapBmQTKwZwrFWHvWjMYZ3HA=,tag:OAXuQPM9MrgUU1T29B8YUA==,type:str]
+    pgp: []
+    encrypted_regex: ^(.*USERNAME|.*PASSWORD)$
+    version: 3.8.1

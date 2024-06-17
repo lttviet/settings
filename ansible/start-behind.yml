@@ -6,12 +6,6 @@
         src: /mnt/configs/settings/docker-compose/behind-reverse-proxy/
         dest: /home/runner
         mode: "0644"
-    # - name: Clone repo and pull latest version
-    #   ansible.builtin.git:
-    #     repo: https://github.com/SillyTavern/SillyTavern
-    #     dest: /home/runner/SillyTavern
-    #     update: yes
-    #     version: staging
     - name: Run `docker-compose up`
       community.docker.docker_compose_v2:
         project_src: /home/runner
