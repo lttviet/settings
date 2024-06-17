@@ -11,7 +11,7 @@ variable "proxmox_password" {
 
 variable "pve_host" {
   type    = string
-  default = "homelab.lan:8006"
+  default = "homelab1.lan:8006"
 }
 
 variable "node" {
