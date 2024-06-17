@@ -10,7 +10,7 @@ variable "proxmox_password" {
 
 variable "pve_host" {
   type    = string
-  default = "homelab.lan:8006"
+  default = "homelab1.lan:8006"
 }
 
 variable "node" {
@@ -24,21 +24,6 @@ variable "ssh_username" {
 }
 
 variable "ssh_password" {
-  type    = string
-  default = "password"
-}
-
-variable "samba_server" {
-  type    = string
-  default = "192.168.100.1"
-}
-
-variable "samba_username" {
-  type    = string
-  default = "samba"
-}
-
-variable "samba_password" {
   type    = string
   default = "password"
 }
