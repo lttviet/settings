@@ -66,10 +66,4 @@ build {
       "SAMBA_SERVER=${var.samba_server}"
     ]
   }
-
-  provisioner "shell" {
-    inline = [
-      "chmod 600 ./.smbcredentials"
-    ]
-  }
 }
