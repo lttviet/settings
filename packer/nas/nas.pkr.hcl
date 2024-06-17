@@ -59,8 +59,13 @@ build {
     destination = "/tmp/"
   }
 
+  provisioner "file" {
+    source      = "./upload/exports"
+    destination = "/tmp/"
+  }
+
   provisioner "shell" {
-    script = "./upload/init.sh"
+    script          = "./upload/init.sh"
     execute_command = "sudo bash -c '{{ .Vars }} {{ .Path }}'"
     environment_vars = [
       "SAMBA_USERNAME=${var.samba_username}",
