@@ -60,15 +60,12 @@ build {
   }
 
   provisioner "file" {
-    content     = "username=${var.samba_username}\npassword=${var.samba_password}"
-    destination = "/home/viet/.smbcredentials"
+    source      = "./upload/auto.nfs"
+    destination = "/tmp/"
   }
 
     provisioner "shell" {
     script = "./upload/init.sh"
     execute_command = "sudo bash -c '{{ .Vars }} {{ .Path }}'"
-    environment_vars = [
-      "SAMBA_SERVER=${var.samba_server}"
-    ]
   }
 }

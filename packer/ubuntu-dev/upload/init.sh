@@ -16,11 +16,22 @@ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main" -y
 sudo apt-get update && sudo apt-get install packer -y
 
-echo 'Installing samba'
-sudo mkdir -p /mnt/configs /mnt/repos
-echo "//$SAMBA_SERVER/configs /mnt/configs cifs credentials=/home/viet/.smbcredentials,uid=1000,gid=1000 0 0" | sudo tee -a /etc/fstab
-echo "//$SAMBA_SERVER/repos /mnt/repos cifs credentials=/home/viet/.smbcredentials,uid=1000,gid=1000 0 0" | sudo tee -a /etc/fstab
-chmod 600 ./.smbcredentials
+echo 'Installing nfs client'
+sudo apt-get install nfs-common autofs -y
+echo '/nfs   /etc/auto.nfs' | sudo tee -a /etc/auto.master
+sudo mv /tmp/auto.nfs /etc/auto.nfs
 
 echo 'Installing ansible'
 sudo apt-get install ansible-core sshpass python3-venv -y
+
+echo 'Installing kubectl'
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+rm kubectl
+
+# echo 'Installing helm'
+# curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+# sudo apt-get install apt-transport-https -y
+# echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+# sudo apt-get update
+# sudo apt-get install helm
