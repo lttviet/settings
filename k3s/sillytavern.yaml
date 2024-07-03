@@ -1,0 +1,105 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: sillytavern-pv
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs
+  nfs:
+    server: 192.168.100.140
+    path: "/configs/sillytavern"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sillytavern-pvc
+  namespace: prod
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  volumeName: sillytavern-pv
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: nfs
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sillytavern-deploy
+  namespace: prod
+  labels:
+    app: sillytavern
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sillytavern
+  template:
+    metadata:
+      labels:
+        app: sillytavern
+    spec:
+      containers:
+        - name: sillytavern
+          image: ghcr.io/sillytavern/sillytavern:1.12.3
+          command: ["node"]
+          args: ["server.js", "--disableCsrf"]
+          ports:
+            - name: http
+              containerPort: 8000
+          volumeMounts:
+          - name: sillytavern-storage
+            mountPath: /home/node/app/config
+            subPath: config
+          - name: sillytavern-storage
+            mountPath: /home/node/app/data
+            subPath: data
+      volumes:
+        - name: sillytavern-storage
+          persistentVolumeClaim:
+            claimName: sillytavern-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sillytavern-svc
+  namespace: prod
+  labels:
+    service: sillytavern
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+  selector:
+    app: sillytavern
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sillytavern-ingress
+  namespace: prod
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - host: tavern.lan
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sillytavern-svc
+                port:
+                  number: 80
+---

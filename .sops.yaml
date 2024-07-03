@@ -4,3 +4,6 @@ creation_rules:
   - path_regex: compose\.enc\.yaml$
     encrypted_regex: "^(.*USERNAME|.*PASSWORD)$"
     age: "age1502nsq9wdlyhf94vdxtzedn4ulsqqr044lhmzdf3775ltvaylstsxw6705"
+  - path_regex: secrets\.yaml$
+    encrypted_regex: "^(token)$"
+    age: "age1502nsq9wdlyhf94vdxtzedn4ulsqqr044lhmzdf3775ltvaylstsxw6705"

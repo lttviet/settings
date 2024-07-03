@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cf-deploy
+  namespace: prod
+  labels:
+    app: cf
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cf
+  template:
+    metadata:
+      labels:
+        app: cf
+    spec:
+      containers:
+        - name: cf
+          image: cloudflare/cloudflared:2024.6.1
+          args: ["tunnel" , "--no-autoupdate", "run", "--token", "$(CF_TOKEN)"]
+          env:
+            - name: CF_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: cf-token
+                  key: token
+---
