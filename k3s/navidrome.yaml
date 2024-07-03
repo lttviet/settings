@@ -1,0 +1,136 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: navidrome-pv
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs
+  nfs:
+    server: 192.168.100.140
+    path: "/configs/navidrome"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: music-pv
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs
+  nfs:
+    server: 192.168.100.140
+    path: "/media/music"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: navidrome-pvc
+  namespace: prod
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  volumeName: navidrome-pv
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: nfs
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: music-pvc
+  namespace: prod
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  volumeName: music-pv
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: nfs
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: navidrome-deploy
+  namespace: prod
+  labels:
+    app: navidrome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: navidrome
+  template:
+    metadata:
+      labels:
+        app: navidrome
+    spec:
+      containers:
+        - name: navidrome
+          image: deluan/navidrome:0.52.5
+          ports:
+            - name: http
+              containerPort: 4533
+          volumeMounts:
+          - name: navidrome-storage
+            mountPath: /data
+          - name: music-storage
+            mountPath: /music
+            readOnly: true
+      volumes:
+        - name: navidrome-storage
+          persistentVolumeClaim:
+            claimName: navidrome-pvc
+        - name: music-storage
+          persistentVolumeClaim:
+            claimName: music-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: navidrome-svc
+  namespace: prod
+  labels:
+    service: navidrome
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 4533
+  selector:
+    app: navidrome
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: navidrome-ingress
+  namespace: prod
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - host: audio.lan
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: navidrome-svc
+                port:
+                  number: 80
+---
