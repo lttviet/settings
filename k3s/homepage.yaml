@@ -83,10 +83,15 @@ metadata:
   name: homepage-ingress
   namespace: prod
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
+  tls:
+  - hosts:
+    - "home.local.lttviet.com"
+    secretName: home-tls
   rules:
-    - host: home.lan
+    - host: home.local.lttviet.com
       http:
         paths:
           - path: /

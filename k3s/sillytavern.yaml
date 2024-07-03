@@ -89,10 +89,15 @@ metadata:
   name: sillytavern-ingress
   namespace: prod
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
+  tls:
+  - hosts:
+    - "tavern.local.lttviet.com"
+    secretName: tavern-tls
   rules:
-    - host: tavern.lan
+    - host: tavern.local.lttviet.com
       http:
         paths:
           - path: /
