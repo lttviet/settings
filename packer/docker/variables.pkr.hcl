@@ -30,18 +30,7 @@ variable "ssh_password" {
   sensitive = true
 }
 
-variable "samba_server" {
+variable "nas_server" {
   type    = string
   default = "192.168.100.1"
-}
-
-variable "samba_username" {
-  type    = string
-  default = "smbclient"
-}
-
-variable "samba_password" {
-  type      = string
-  default   = "password"
-  sensitive = true
 }

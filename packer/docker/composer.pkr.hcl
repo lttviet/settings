@@ -9,7 +9,8 @@ packer {
 
 source "proxmox-iso" "ubuntu" {
   vm_name              = "composer"
-  template_name        = "composer"
+  vm_id                = 9000
+  template_name        = "composer-template"
   template_description = "Ubuntu 24.04, generated on ${timestamp()}"
   os                   = "l26"
   cores                = 8
@@ -54,16 +55,11 @@ build {
     "source.proxmox-iso.ubuntu"
   ]
 
-  provisioner "file" {
-    content     = "username=${var.samba_username}\npassword=${var.samba_password}"
-    destination = "/home/viet/.smbcredentials"
-  }
-
   provisioner "shell" {
     script          = "./upload/init.sh"
     execute_command = "sudo bash -c '{{ .Vars }} {{ .Path }}'"
     environment_vars = [
-      "SAMBA_SERVER=${var.samba_server}",
+      "NAS_SERVER=${var.nas_server}",
       "SSH_USERNAME=${var.ssh_username}"
     ]
   }

@@ -11,6 +11,7 @@ autoinstall:
   ssh:
     install-server: true
     allow-pw: true
+    disable_root: true
     authorized-keys:
       [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOF/GmXSlATt6nrDE+HBMYYT1MYMdVQH1g6t1Aufjn5n lttviet@gmail.com",
@@ -20,10 +21,6 @@ autoinstall:
   package_reboot_if_required: true
   updates: all
   packages:
-    - curl
-    - ca-certificates
     - qemu-guest-agent # needed for packer and proxmox
-    - unattended-upgrades
-    - cifs-utils
   late-commands:
     - echo 'viet ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/viet # don't ask password for sudo
