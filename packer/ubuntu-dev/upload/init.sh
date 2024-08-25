@@ -29,6 +29,9 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 rm kubectl
 
+echo 'Installing other apps'
+sudo apt-get install net-tools -y
+
 # echo 'Installing helm'
 # curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
 # sudo apt-get install apt-transport-https -y
