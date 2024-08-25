@@ -1,0 +1,11 @@
+services:
+    adguard-home:
+        restart: unless-stopped
+        image: adguard/adguardhome:latest
+        network_mode: host
+        container_name: adguard-home
+        volumes:
+            - ./work:/opt/adguardhome/work
+            - ./conf:/opt/adguardhome/conf
+        logging:
+            driver: local

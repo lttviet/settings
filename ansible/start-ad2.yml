@@ -1,0 +1,53 @@
+- name: Update dockers and up
+  hosts: adguard2
+  tasks:
+    - name: Copy files to remote
+      ansible.builtin.copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+      loop:
+        - src: ../docker-compose/adguard/compose2.yaml
+          dest: /home/viet/compose.yaml
+    - name: Run `docker-compose up`
+      community.docker.docker_compose_v2:
+        project_src: /home/viet
+      register: output
+    - name: Copy resolved config
+      ansible.builtin.copy:
+        src: ./adguardhome.conf
+        dest: /etc/systemd/resolved.conf.d/
+        mode: "0644"
+        owner: root
+        group: root
+      become: true
+    - name: Backup resolved
+      ansible.builtin.copy:
+        src: /etc/resolv.conf
+        dest: /etc/resolv.conf.backup
+        mode: "0644"
+        owner: root
+        group: root
+        remote_src: true
+      become: true
+    - name: Delete resolved
+      ansible.builtin.file:
+        path: /etc/resolv.conf
+        state: absent
+      become: true
+    - name: Create symbolic link
+      ansible.builtin.file:
+        src: /run/systemd/resolve/resolv.conf
+        dest: /etc/resolv.conf
+        owner: root
+        group: root
+        state: link
+      become: true
+    - name: stop DNSStubListener
+      ansible.builtin.systemd_service:
+        state: restarted
+        daemon_reload: true
+        name: systemd-resolved
+      become: true
+    - name: Show results
+      ansible.builtin.debug:
+        var: output

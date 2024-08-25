@@ -6,9 +6,9 @@
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
       loop:
-        - src: ../docker-compose/adguard/compose.yaml
-          dest: /home/viet/
-        - src: ../docker-compose/adguard/conf/AdGuardHome.yaml
+        - src: ../docker-compose/adguard/compose1.yaml
+          dest: /home/viet/compose.yaml
+        - src: /nfs/configs/adguard/conf/AdGuardHome.yaml
           dest: /home/viet/conf/
     - name: Run `docker-compose up`
       community.docker.docker_compose_v2:

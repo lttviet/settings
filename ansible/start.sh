@@ -5,6 +5,6 @@ if [ -z $SOPS_AGE_KEY_FILE ]; then
     exit 1
 fi
 
-sops -d ../docker-compose/adguard/compose.enc.yaml > ../docker-compose/adguard/compose.yaml
+sops -d ../docker-compose/adguard/compose2.enc.yaml > ../docker-compose/adguard/compose2.yaml
 
-ansible-playbook -i hosts.yaml start-ad.yml -kK
+ansible-playbook -i hosts.yaml start-ad2.yml -kK
