@@ -1,3 +1,4 @@
 *.env
 key.txt
 plaintext.json
+compose2.yaml
