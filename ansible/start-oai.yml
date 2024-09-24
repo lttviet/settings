@@ -1,0 +1,16 @@
+- name: Update dockers and up
+  hosts: oai
+  tasks:
+    - name: Copy files to remote
+      ansible.builtin.copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+      loop:
+        - src: ../docker-compose/oai/compose.yaml
+          dest: /home/viet/compose.yaml
+        - src: ../docker-compose/oai/.env
+          dest: /home/viet/.env
+    - name: Run `docker-compose up`
+      community.docker.docker_compose_v2:
+        project_src: /home/viet
+      register: output

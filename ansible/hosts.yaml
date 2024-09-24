@@ -1,13 +1,7 @@
 ungrouped:
   hosts:
-    behind-reverse-proxy:
-      ansible_host: 192.168.100.104
-    wg:
-      ansible_host: wireguard.lan
-    cloudflared:
-      ansible_host: cloudflared.lan
-    log-collector:
-      ansible_host: log-collector.lan
+    oai:
+      ansible_host: 192.168.100.117
     adguard1:
       ansible_host: 192.168.0.20
     adguard2:

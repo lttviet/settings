@@ -1,0 +1,30 @@
+x-default: &default
+  restart: unless-stopped
+
+services:
+  oai:
+    <<: [ *default ]
+    image: khanonci/oai-reverse-proxy:latest
+    container_name: oai
+    env_file:
+      - ./.env
+    volumes:
+      - /nfs/configs/oai/greeting.md:/app/greeting.md
+      - /nfs/configs/oai/data:/app/data
+    labels:
+      - traefik.http.routers.oai.rule=Host(`oai.local.lttviet.com`)
+      - traefik.http.services.oai.loadbalancer.server.port=7860
+
+  traefik:
+    <<: [ *default ]
+    image: traefik:latest
+    container_name: traefik
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /nfs/configs/traefik/traefik.yaml:/traefik.yml:ro
+      - /nfs/configs/traefik/acme.json:/acme.json
+    labels:
+      - traefik.http.routers.dashboard.rule=Host(`traefik.local.lttviet.com`)
+      - traefik.http.routers.dashboard.service=api@internal
