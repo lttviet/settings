@@ -9,7 +9,8 @@ packer {
 
 source "proxmox-iso" "ubuntu" {
   vm_name              = "k3s-node"
-  template_name        = "k3s-node"
+  vm_id                = 8000
+  template_name        = "k3s-node-template"
   template_description = "Ubuntu 24.04, generated on ${timestamp()}"
   os                   = "l26"
   cores                = 8
