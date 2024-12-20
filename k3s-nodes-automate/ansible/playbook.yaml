@@ -1,0 +1,26 @@
+- hosts: k3s_servers
+  tasks:
+    - name: Install K3S server
+      shell: curl -sfL https://get.k3s.io | sh -s - server --cluster-init
+      environment:
+        K3S_TOKEN: "{{ k3s_token }}"
+    - name: Display K3S config
+      shell: sudo k3s kubectl config view --raw
+      become: true
+      register: config_output
+    - name: Copy K3S config to local.
+      copy:
+        content: "{{ config_output.stdout }}"
+        dest: "/tmp/k3s.yaml"
+      delegate_to: localhost
+
+- hosts: k3s_agents
+  vars:
+    k3s_server: "{{ groups['k3s_servers'][0] }}"
+    k3s_url: "https://{{ hostvars[k3s_server]['ansible_host'] }}:6443"
+  tasks:
+    - name: Install K3S agent
+      shell: curl -sfL https://get.k3s.io | sh -s - agent
+      environment:
+        K3S_TOKEN: "{{ k3s_token }}"
+        K3S_URL: "{{ k3s_url }}"

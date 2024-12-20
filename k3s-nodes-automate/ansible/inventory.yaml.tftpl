@@ -1,0 +1,24 @@
+all:
+  hosts:
+  %{~ for name, details in nodes ~}
+    ${name}:
+      ansible_host: ${details.ip}
+  %{~ endfor ~}
+  vars:
+    k3s_token: ${k3s_token}
+
+k3s_servers:
+  hosts:
+  %{~ for name, details in nodes ~}
+  %{~ if details.role == "server" ~}
+    ${name}:
+  %{~ endif ~}
+  %{~ endfor ~}
+
+k3s_agents:
+  hosts:
+  %{~ for name, details in nodes ~}
+  %{~ if details.role == "agent" ~}
+    ${name}:
+  %{~ endif ~}
+  %{~ endfor ~}
