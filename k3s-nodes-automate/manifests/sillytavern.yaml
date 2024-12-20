@@ -49,7 +49,7 @@ spec:
     spec:
       containers:
         - name: sillytavern
-          image: ghcr.io/sillytavern/sillytavern:1.12.6
+          image: ghcr.io/sillytavern/sillytavern:1.12.9
           command: ["node"]
           args: ["server.js", "--disableCsrf"]
           ports:

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: cf
-          image: cloudflare/cloudflared:2024.6.1
+          image: cloudflare/cloudflared:2024.12.2
           args: ["tunnel" , "--no-autoupdate", "run", "--token", "$(CF_TOKEN)"]
           env:
             - name: CF_TOKEN
