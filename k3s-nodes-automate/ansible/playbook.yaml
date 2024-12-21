@@ -1,7 +1,7 @@
 - hosts: k3s_servers
   tasks:
     - name: Install K3S server
-      shell: curl -sfL https://get.k3s.io | sh -s - server --cluster-init
+      shell: curl -sfL https://get.k3s.io | sh -s - server --cluster-init --disable servicelb --kube-proxy-arg proxy-mode=ipvs --kube-proxy-arg ipvs-strict-arp
       environment:
         K3S_TOKEN: "{{ k3s_token }}"
     - name: Display K3S config
