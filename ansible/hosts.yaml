@@ -2,10 +2,6 @@ ungrouped:
   hosts:
     oai:
       ansible_host: 192.168.100.107
-    adguard1:
-      ansible_host: 192.168.0.20
-    adguard2:
-      ansible_host: 192.168.0.21
   vars:
     ansible_connection: ssh
     ansible_user: viet
