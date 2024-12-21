@@ -1,0 +1,174 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blocky-config
+  namespace: dns
+data:
+  config.yml: |
+    upstreams:
+      groups:
+        default:
+          - https://security.cloudflare-dns.com/dns-query
+          - https://dns.quad9.net/dns-query
+          - https://dns.google/dns-query
+
+    # DNS servers to resolve upstream DoH
+    bootstrapDns:
+      - tcp+udp:1.1.1.1
+      - tcp+udp:8.8.8.8
+
+    blocking:
+      denylists:
+        ads:
+          - https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/pro.txt
+      clientGroupsBlock:
+        default:
+          - ads
+      loading:
+        downloads:
+          timeout: 60s
+          attempts: 10
+          cooldown: 20s
+
+    customDNS:
+      filterUnmappedTypes: true
+      mapping:
+        homelab1.local.lttviet.com: 192.168.0.107
+        homelab2.local.lttviet.com: 192.168.0.108
+        homelab3.local.lttviet.com: 192.168.0.109
+        oai.local.lttviet.com: 192.168.100.107
+        local.lttviet.com: 192.168.0.20
+
+    caching:
+      minTime: 5m
+      maxTime: 30m
+      prefetching: true
+
+    redis:
+      address: redis-clusterip.db:6379
+      database: 0
+      required: true
+      connectionAttempts: 10
+      connectionCooldown: 3s
+
+    ports:
+      dns: 53
+      http: 80
+
+    log:
+      level: info
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: blocky
+  namespace: dns
+  labels:
+    app: blocky
+spec:
+  selector:
+    matchLabels:
+      app: blocky
+  template:
+    metadata:
+      labels:
+        app: blocky
+    spec:
+      initContainers:
+        - name: wait-for-redis
+          image: busybox:latest
+          command:
+            - 'sh'
+            - '-c'
+            - 'until nc -z -w 2 redis-clusterip.db 6379; do echo waiting for redis; sleep 2; done; echo Redis is up!'
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+        - key: node-role.kubernetes.io/master
+          operator: Exists
+          effect: NoSchedule
+      containers:
+        - name: blocky
+          image: spx01/blocky:v0.24
+          env:
+            - name: TZ
+              value: America/New_York
+          ports:
+            - name: dns-tcp
+              containerPort: 53
+              protocol: TCP
+            - name: dns-udp
+              containerPort: 53
+              protocol: UDP
+            - name: http
+              containerPort: 80
+          volumeMounts:
+          - name: config
+            mountPath: /app/config.yml
+            subPath: config.yml
+      volumes:
+        - name: config
+          configMap:
+            name: blocky-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blocky-doh-clusterip
+  namespace: dns
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: blocky
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blocky-dns-lb
+  namespace: dns
+  annotations:
+    metallb.universe.tf/address-pool: local-dns-pool
+spec:
+  type: LoadBalancer
+  ports:
+    - name: dns-tcp
+      port: 53
+      targetPort: 53
+      protocol: TCP
+    - name: dns-udp
+      port: 53
+      targetPort: 53
+      protocol: UDP
+  selector:
+    app: blocky
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: blocky
+  namespace: dns
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  tls:
+  - hosts:
+    - "dns.local.lttviet.com"
+    secretName: lttviet.com
+  rules:
+    - host: dns.local.lttviet.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blocky-doh-clusterip
+                port:
+                  number: 80
+---
