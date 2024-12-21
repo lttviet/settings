@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: sillytavern-pv
+  name: sillytavern
 spec:
   capacity:
     storage: 1Gi
@@ -18,13 +18,13 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sillytavern-pvc
-  namespace: prod
+  name: sillytavern
+  namespace: web
 spec:
   accessModes:
     - ReadWriteMany
   volumeMode: Filesystem
-  volumeName: sillytavern-pv
+  volumeName: sillytavern
   resources:
     requests:
       storage: 1Gi
@@ -33,8 +33,8 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sillytavern-deploy
-  namespace: prod
+  name: sillytavern
+  namespace: web
   labels:
     app: sillytavern
 spec:
@@ -56,24 +56,22 @@ spec:
             - name: http
               containerPort: 8000
           volumeMounts:
-          - name: sillytavern-storage
-            mountPath: /home/node/app/config
-            subPath: config
-          - name: sillytavern-storage
-            mountPath: /home/node/app/data
-            subPath: data
+            - name: sillytavern-storage
+              mountPath: /home/node/app/config
+              subPath: config
+            - name: sillytavern-storage
+              mountPath: /home/node/app/data
+              subPath: data
       volumes:
         - name: sillytavern-storage
           persistentVolumeClaim:
-            claimName: sillytavern-pvc
+            claimName: sillytavern
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: sillytavern-svc
-  namespace: prod
-  labels:
-    service: sillytavern
+  name: sillytavern-clusterip
+  namespace: web
 spec:
   type: ClusterIP
   ports:
@@ -86,16 +84,15 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: sillytavern-ingress
-  namespace: prod
+  name: sillytavern
+  namespace: web
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
   tls:
-  - hosts:
-    - "tavern.local.lttviet.com"
-    secretName: tavern-tls
+    - hosts:
+      - "tavern.local.lttviet.com"
+      secretName: lttviet.com
   rules:
     - host: tavern.local.lttviet.com
       http:
@@ -104,7 +101,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: sillytavern-svc
+                name: sillytavern-clusterip
                 port:
                   number: 80
 ---

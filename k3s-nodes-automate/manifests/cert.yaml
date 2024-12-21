@@ -10,22 +10,25 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-prod-key
     solvers:
-    - dns01:
-        cloudflare:
-          email: lttviet@gmail.com
-          apiKeySecretRef:
-            name: cf-api-token
-            key: token
+      - dns01:
+          cloudflare:
+            email: lttviet@gmail.com
+            apiKeySecretRef:
+              name: cf-api-token
+              key: token
 ---
-# apiVersion: cert-manager.io/v1
-# kind: Certificate
-# metadata:
-#   name: wildcard-local-domain
-# spec:
-#   secretName: wildcard-local-domain-tls
-#   issuerRef:
-#     name: letsencrypt
-#     kind: ClusterIssuer
-#   dnsNames:
-#   - "*.local.lttviet.com"
-
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: lttviet.com
+  namespace: web
+spec:
+  secretName: lttviet.com
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+    group: cert-manager.io
+  commonName: "*.local.lttviet.com"
+  dnsNames:
+    - "*.local.lttviet.com"
+---

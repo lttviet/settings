@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cf-deploy
-  namespace: cf
+  name: cf-tunnel
+  namespace: cf-tunnel
   labels:
-    app: cf
+    app: cf-tunnel
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: cf
+      app: cf-tunnel
   template:
     metadata:
       labels:
-        app: cf
+        app: cf-tunnel
     spec:
       containers:
         - name: cf
@@ -26,4 +26,6 @@ spec:
                 secretKeyRef:
                   name: cf-token
                   key: token
+            - name: TZ
+              value: America/New_York
 ---
