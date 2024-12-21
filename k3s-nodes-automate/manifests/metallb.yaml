@@ -1,0 +1,26 @@
+---
+# traefik will grab the first available IP address
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: local-traefik-pool
+  namespace: metallb-system
+spec:
+  addresses:
+    - 192.168.0.20/32
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: local-dns-pool
+  namespace: metallb-system
+spec:
+  addresses:
+    - 192.168.0.30/32
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: ad
+  namespace: metallb-system
+---
