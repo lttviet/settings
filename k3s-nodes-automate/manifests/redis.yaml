@@ -13,7 +13,7 @@ spec:
   storageClassName: nfs
   nfs:
     server: 192.168.100.140
-    path: "/configs/redis"
+    path: '/configs/redis'
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -50,9 +50,6 @@ spec:
       containers:
         - name: redis
           image: redis/redis-stack:7.4.0-v1
-          env:
-            - name: TZ
-              value: America/New_York
           ports:
             - name: database
               containerPort: 6379
@@ -93,7 +90,7 @@ metadata:
 spec:
   tls:
     - hosts:
-      - "redis-insight.local.lttviet.com"
+        - 'redis-insight.local.lttviet.com'
       secretName: lttviet.com
   rules:
     - host: redis-insight.local.lttviet.com
@@ -107,3 +104,4 @@ spec:
                 port:
                   number: 80
 ---
+
