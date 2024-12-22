@@ -1,7 +1,0 @@
-ungrouped:
-  hosts:
-    oai:
-      ansible_host: 192.168.100.107
-  vars:
-    ansible_connection: ssh
-    ansible_user: viet
