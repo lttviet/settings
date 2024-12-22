@@ -18,7 +18,7 @@ terraform {
 provider "sops" {}
 
 data "sops_file" "secrets" {
-  source_file = "${path.module}/secrets.yaml"
+  source_file = "${path.module}/secrets-tf.yaml"
 }
 
 provider "proxmox" {
