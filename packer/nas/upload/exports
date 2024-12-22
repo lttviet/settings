@@ -1,6 +1,0 @@
-/shares           192.168.0.0/16(rw,fsid=0,no_subtree_check,sync,all_squash,anonuid=110,anongid=110)
-/shares/configs   192.168.0.0/16(rw,no_subtree_check,sync,all_squash,anonuid=110,anongid=110)
-/shares/repos     192.168.0.0/16(rw,no_subtree_check,sync,all_squash,anonuid=110,anongid=110)
-/shares/download  192.168.0.0/16(rw,no_subtree_check,sync,all_squash,anonuid=110,anongid=110)
-/shares/logs      192.168.0.0/16(rw,no_subtree_check,sync,all_squash,anonuid=110,anongid=110)
-/shares/media     192.168.0.0/16(rw,no_subtree_check,sync,all_squash,anonuid=110,anongid=110)
