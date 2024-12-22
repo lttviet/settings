@@ -37,7 +37,6 @@ data:
         homelab1.local.lttviet.com: 192.168.0.107
         homelab2.local.lttviet.com: 192.168.0.108
         homelab3.local.lttviet.com: 192.168.0.109
-        oai.local.lttviet.com: 192.168.100.107
         local.lttviet.com: 192.168.0.20
 
     caching:
