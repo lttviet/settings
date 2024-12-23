@@ -3,7 +3,7 @@ default: init
 .PHONY: init
 init:
 		kubectl apply -f namespace.yaml
-		sops -d secrets.yaml | kubectl apply -f -
+		sops -d secrets-k3s.yaml | kubectl apply -f -
 		kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.1/cert-manager.yaml
 		kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.9/config/manifests/metallb-native.yaml
 		# webhoook takes some time to be ready
