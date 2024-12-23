@@ -1,0 +1,113 @@
+#cloud-config
+users:
+- default
+- name: ${username}
+  groups:
+  - sudo
+  shell: /bin/bash
+  ssh_authorized_keys:
+  %{~ for key in ssh_public_keys ~}
+    - ${key}
+  %{~ endfor ~}
+  sudo: ALL=(ALL) NOPASSWD:ALL
+- name: ${samba_username}
+
+update: true
+package_update: true
+package_upgrade: true
+
+write_files:
+- path: /etc/exports
+  content: |
+    /shares           192.168.0.0/16(rw,fsid=0,no_subtree_check,sync,all_squash,anonuid=1001,anongid=1001)
+    /shares/configs   192.168.0.0/16(rw,no_subtree_check,sync,all_squash,anonuid=1001,anongid=1001)
+    /shares/data      192.168.0.0/16(rw,no_subtree_check,sync,all_squash,anonuid=1001,anongid=1001)
+    /shares/repos     192.168.0.0/16(rw,no_subtree_check,sync,all_squash,anonuid=1001,anongid=1001)
+    /shares/download  192.168.0.0/16(rw,no_subtree_check,sync,all_squash,anonuid=1001,anongid=1001)
+    /shares/logs      192.168.0.0/16(rw,no_subtree_check,sync,all_squash,anonuid=1001,anongid=1001)
+    /shares/media     192.168.0.0/16(rw,no_subtree_check,sync,all_squash,anonuid=1001,anongid=1001)
+- path: /etc/samba/smb.conf
+  content: |
+    # /etc/samba/smb.conf
+    [global]
+      # default values
+      workgroup = WORKGROUP
+      server string = %h server (Samba, Ubuntu)
+      log file = /var/log/samba/log.%m
+      max log size = 1000
+      logging = file
+      panic action = /usr/share/samba/panic-action %d
+
+      server role = standalone server
+      obey pam restrictions = yes
+      unix password sync = yes
+      passwd program = /usr/bin/passwd %u
+      passwd chat = *Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuc>
+      pam password change = yes
+      usershare allow guests = yes
+
+      # performance tuning
+      read raw = yes
+      write raw = yes
+
+    [configs]
+      comment = Configs
+      path = /shares/configs
+      read only = No
+      force user = ${samba_username}
+      force group = ${samba_username}
+
+    [data]
+      comment = Data
+      path = /shares/data
+      read only = No
+      force user = ${samba_username}
+      force group = ${samba_username}
+
+    [repos]
+      comment = Git Repos
+      path = /shares/repos
+      read only = No
+      force user = ${samba_username}
+      force group = ${samba_username}
+
+    [download]
+      comment = Download
+      path = /shares/download
+      read only = No
+      force user = ${samba_username}
+      force group = ${samba_username}
+
+    [logs]
+      comment = Logs
+      path = /shares/logs
+      read only = No
+      force user = ${samba_username}
+      force group = ${samba_username}
+
+    [media]
+      comment = Media
+      path = /shares/media
+      read only = No
+      force user = ${samba_username}
+      force group = ${samba_username}
+
+packages:
+  - qemu-guest-agent # need this for guest mode
+  - net-tools
+  - curl
+  - ca-certificates
+  - unattended-upgrades
+  - samba
+  - nfs-kernel-server
+runcmd:
+  - mkdir -p /shares/configs /shares/data /shares/repos /shares/download /shares/logs /shares/media
+  - chmod 775 -R /shares
+  - chown ${samba_username}:${samba_username} -R /shares
+  - echo "${samba_password}\n${samba_password}" | smbpasswd -a -s ${samba_username}
+  - systemctl start nfs-kernel-server.service
+  - exportfs -ar
+  - timedatectl set-timezone America/New_York
+  - systemctl enable qemu-guest-agent
+  - systemctl start qemu-guest-agent
+  - echo "done" > /tmp/cloud-config.done
