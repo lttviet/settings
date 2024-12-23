@@ -16,4 +16,4 @@ plan: fmt
 deploy: init
 		tofu apply --auto-approve
 		sleep 10
-		ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ../ansible/inventory.yaml ../ansible/playbook.yaml
+		ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/inventory.yaml ansible/playbook.yaml
