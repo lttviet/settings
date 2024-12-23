@@ -13,7 +13,7 @@ spec:
   storageClassName: nfs
   nfs:
     server: 192.168.0.40
-    path: '/configs/redis'
+    path: '/data/redis'
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
