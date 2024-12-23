@@ -12,8 +12,8 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs
   nfs:
-    server: 192.168.100.140
-    path: "/configs/sillytavern"
+    server: 192.168.0.40
+    path: '/configs/sillytavern'
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -50,8 +50,8 @@ spec:
       containers:
         - name: sillytavern
           image: ghcr.io/sillytavern/sillytavern:1.12.9
-          command: ["node"]
-          args: ["server.js", "--disableCsrf"]
+          command: ['node']
+          args: ['server.js', '--disableCsrf']
           ports:
             - name: http
               containerPort: 8000
@@ -91,7 +91,7 @@ metadata:
 spec:
   tls:
     - hosts:
-      - "tavern.local.lttviet.com"
+        - 'tavern.local.lttviet.com'
       secretName: lttviet.com
   rules:
     - host: tavern.local.lttviet.com
@@ -105,3 +105,4 @@ spec:
                 port:
                   number: 80
 ---
+

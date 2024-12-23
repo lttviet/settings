@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs
   nfs:
-    server: 192.168.100.140
+    server: 192.168.0.40
     path: '/configs/redis'
 ---
 apiVersion: v1

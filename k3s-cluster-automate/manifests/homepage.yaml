@@ -12,8 +12,8 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs
   nfs:
-    server: 192.168.100.140
-    path: "/configs/homepage"
+    server: 192.168.0.40
+    path: '/configs/homepage'
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -54,8 +54,8 @@ spec:
             - name: http
               containerPort: 3000
           volumeMounts:
-          - name: homepage-storage
-            mountPath: /app/config
+            - name: homepage-storage
+              mountPath: /app/config
       volumes:
         - name: homepage-storage
           persistentVolumeClaim:
@@ -84,9 +84,9 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
-  - hosts:
-    - "home.local.lttviet.com"
-    secretName: lttviet.com
+    - hosts:
+        - 'home.local.lttviet.com'
+      secretName: lttviet.com
   rules:
     - host: home.local.lttviet.com
       http:
@@ -99,3 +99,4 @@ spec:
                 port:
                   number: 80
 ---
+

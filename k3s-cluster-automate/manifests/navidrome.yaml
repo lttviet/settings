@@ -12,8 +12,8 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs
   nfs:
-    server: 192.168.100.140
-    path: "/configs/navidrome"
+    server: 192.168.0.40
+    path: '/configs/navidrome'
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -28,8 +28,8 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs
   nfs:
-    server: 192.168.100.140
-    path: "/media/music"
+    server: 192.168.0.40
+    path: '/media/music'
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -85,11 +85,11 @@ spec:
             - name: http
               containerPort: 4533
           volumeMounts:
-          - name: navidrome-storage
-            mountPath: /data
-          - name: music-storage
-            mountPath: /music
-            readOnly: true
+            - name: navidrome-storage
+              mountPath: /data
+            - name: music-storage
+              mountPath: /music
+              readOnly: true
       volumes:
         - name: navidrome-storage
           persistentVolumeClaim:
@@ -121,9 +121,9 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
-  - hosts:
-    - "audio.local.lttviet.com"
-    secretName: lttviet.com
+    - hosts:
+        - 'audio.local.lttviet.com'
+      secretName: lttviet.com
   rules:
     - host: audio.local.lttviet.com
       http:
@@ -136,3 +136,4 @@ spec:
                 port:
                   number: 80
 ---
+
