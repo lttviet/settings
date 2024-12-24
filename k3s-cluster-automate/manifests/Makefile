@@ -22,6 +22,7 @@ deploy-web:
 		kubectl apply -f sillytavern.yaml
 		kubectl apply -f navidrome.yaml
 		kubectl apply -f cloudflared.yaml
+		kubectl apply -f oai.yaml
 
 .PHONY: deploy
 deploy: deploy-web deploy-dns
