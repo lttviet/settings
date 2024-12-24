@@ -1,4 +1,3 @@
-settings
-===
+# Settings
 
-Settings to automate my home lab.
+Scripts, dotfiles, and other configuration files for my homelab and development environment.
