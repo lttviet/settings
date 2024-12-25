@@ -23,9 +23,9 @@ spec:
               containerPort: 80
           env:
             - name: TZ
-              value: America/New_York
+              value: 'America/New_York'
             - name: AUTO_DOWNLOAD_CHAPTERS
-              value: true
+              value: 'true'
             - name: AUTO_DOWNLOAD_NEW_CHAPTERS_LIMIT
               value: 10
             - name: EXTENSION_REPOS
@@ -36,7 +36,7 @@ spec:
             - name: BIND_PORT
               value: 80
             - name: WEB_UI_CHANNEL
-              value: preview
+              value: 'preview'
           volumeMounts:
             - name: suwayomi-download
               mountPath: /home/suwayomi/.local/share/Tachidesk/downloads
