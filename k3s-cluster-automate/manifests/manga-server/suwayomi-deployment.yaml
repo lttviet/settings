@@ -29,8 +29,7 @@ spec:
             - name: AUTO_DOWNLOAD_NEW_CHAPTERS_LIMIT
               value: '10'
             - name: EXTENSION_REPOS
-              value:
-                - 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json'
+              value: '["https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"]'
             - name: BIND_PORT
               value: '80'
             - name: WEB_UI_CHANNEL
