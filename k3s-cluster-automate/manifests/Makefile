@@ -15,6 +15,7 @@ init:
 		kubectl apply -f cert.yaml
 		kubectl apply -f metallb.yaml
 		kubectl apply -f argocd.yaml
+		kubectl apply -f coredns-custom.yaml
 
 .PHONY: init-argocd
 init-argocd:
