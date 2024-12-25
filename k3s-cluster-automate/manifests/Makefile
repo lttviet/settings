@@ -37,3 +37,14 @@ deploy-web:
 
 .PHONY: deploy
 deploy: deploy-web deploy-dns
+
+.PHONY: deploy-argocd-apps
+deploy-argocd-apps:
+		kubectl config set-context --current --namespace=argocd
+		argocd app create manga-server \
+			--repo https://github.com/lttviet/settings \
+			--path k3s-cluster-automate/manifests/manga-server \
+			--dest-server https://kubernetes.default.svc \
+			--dest-namespace manga-server \
+			--sync-policy automated \
+ 			--sync-option CreateNamespace=true
