@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: suwayomi-server
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`manga.local.lttviet.com`)
+      priority: 10
+      services:
+        - name: suwayomi-server
+          port: 80
+  tls:
+    secretName: lttviet.com
+---
+
