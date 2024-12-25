@@ -1,0 +1,62 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: suwayomi-config
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs
+  nfs:
+    server: 192.168.0.40
+    path: '/configs'
+---
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: suwayomi-download
+# spec:
+#   capacity:
+#     storage: 10Gi
+#   volumeMode: Filesystem
+#   accessModes:
+#     - ReadWriteMany
+#   persistentVolumeReclaimPolicy: Retain
+#   storageClassName: nfs
+#   nfs:
+#     server: 192.168.0.40
+#     path: '/download/suwayomi'
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: suwayomi-config
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  volumeName: suwayomi-config
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: nfs
+---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: suwayomi-download
+# spec:
+#   accessModes:
+#     - ReadWriteMany
+#   volumeMode: Filesystem
+#   volumeName: suwayomi-download
+#   resources:
+#     requests:
+#       storage: 10Gi
+#   storageClassName: nfs
+---
+

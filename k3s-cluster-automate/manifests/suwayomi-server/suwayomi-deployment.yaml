@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: suwayomi
+  labels:
+    app: suwayomi-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: suwayomi-server
+  template:
+    metadata:
+      labels:
+        app: suwayomi-server
+    spec:
+      containers:
+        - name: suwayomi-server
+          image: ghcr.io/suwayomi/tachidesk:v1.1.1-r1650
+          ports:
+            - name: http
+              containerPort: 4567
+          volumeMounts:
+            # - name: suwayomi-download
+            #   mountPath: /home/suwayomi/.local/share/Tachidesk/downloads
+            #   subPath: config
+            - name: suwayomi-config
+              mountPath: /home/suwayomi/.local/share/Tachidesk
+              subPath: suwayomi
+      volumes:
+        - name: suwayomi-config
+          persistentVolumeClaim:
+            claimName: suwayomi-config
+---
+

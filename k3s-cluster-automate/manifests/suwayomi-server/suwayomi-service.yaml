@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: suwayomi-server
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 4567
+  selector:
+    app: suwayomi-server
+---
+
