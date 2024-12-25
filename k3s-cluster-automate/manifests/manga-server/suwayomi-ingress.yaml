@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: suwayomi-server
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  tls:
+    - hosts:
+        - 'manga.local.lttviet.com'
+      secretName: lttviet.com
+  rules:
+    - host: manga.local.lttviet.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: suwayomi-server
+                port:
+                  number: 80
+---
+
