@@ -14,6 +14,7 @@ init:
 		sleep 60
 		kubectl apply -f cert.yaml
 		kubectl apply -f metallb.yaml
+		kubectl apply -f argocd.yaml
 
 .PHONY: init-argocd
 init-argocd:
