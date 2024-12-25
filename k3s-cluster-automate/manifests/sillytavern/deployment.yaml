@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sillytavern
+  labels:
+    app: sillytavern
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sillytavern
+  template:
+    metadata:
+      labels:
+        app: sillytavern
+    spec:
+      containers:
+        - name: sillytavern
+          image: ghcr.io/sillytavern/sillytavern:1.12.9
+          ports:
+            - name: http
+              containerPort: 80
+          volumeMounts:
+            - name: sillytavern-config
+              mountPath: /home/node/app/config
+              subPath: sillytavern
+            - name: sillytavern-data
+              mountPath: /home/node/app/data
+              subPath: sillytavern
+      volumes:
+        - name: sillytavern-config
+          persistentVolumeClaim:
+            claimName: sillytavern-config
+        - name: sillytavern-data
+          persistentVolumeClaim:
+            claimName: sillytavern-data
+---
+

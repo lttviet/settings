@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sillytavern
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  tls:
+    - hosts:
+        - 'tavern.local.lttviet.com'
+      secretName: lttviet.com
+  rules:
+    - host: tavern.local.lttviet.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sillytavern
+                port:
+                  number: 80
+---
+
