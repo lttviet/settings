@@ -42,11 +42,19 @@ deploy: deploy-web deploy-dns
 
 .PHONY: deploy-argocd-apps
 deploy-argocd-apps:
+		argocd relogin --grpc-web
 		kubectl config set-context --current --namespace=argocd
 		argocd app create manga-server \
 			--repo https://github.com/lttviet/settings \
 			--path k3s-cluster-automate/manifests/manga-server \
 			--dest-server https://kubernetes.default.svc \
 			--dest-namespace manga-server \
+			--sync-policy automated \
+ 			--sync-option CreateNamespace=true
+		argocd app create sillytavern \
+			--repo https://github.com/lttviet/settings \
+			--path k3s-cluster-automate/manifests/sillytavern \
+			--dest-server https://kubernetes.default.svc \
+			--dest-namespace sillytavern \
 			--sync-policy automated \
  			--sync-option CreateNamespace=true
