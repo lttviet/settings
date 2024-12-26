@@ -10,7 +10,7 @@ init:
 		kubectl patch configmap argocd-cmd-params-cm -n argocd --type merge -p '{"data":{"server.insecure":"true"}}'
 		kubectl delete pod -n argocd -l app.kubernetes.io/name=argocd-server
 
-		# cert-manager webhoook takes some time to be ready
+		# cert-manager webhook takes some time to be ready
 		sleep 60
 		kubectl apply -f cert.yaml
 		kubectl apply -f metallb.yaml
