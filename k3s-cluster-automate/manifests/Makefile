@@ -51,3 +51,11 @@ deploy-argocd-apps:
 			--sync-policy automated \
 			--sync-option CreateNamespace=true
 		sops -d external-secrets/secret.yaml | kubectl apply -f -
+		argocd app create oai \
+			--repo https://github.com/lttviet/settings \
+			--revision argocd-oai \
+			--path k3s-cluster-automate/manifests/oai \
+			--dest-server https://kubernetes.default.svc \
+			--dest-namespace oai \
+			--sync-policy automated \
+ 			--sync-option CreateNamespace=true
