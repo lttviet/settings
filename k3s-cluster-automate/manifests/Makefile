@@ -42,3 +42,12 @@ deploy-argocd-apps:
 			--dest-namespace sillytavern \
 			--sync-policy automated \
  			--sync-option CreateNamespace=true
+		argocd app create external-secrets \
+			--repo https://charts.external-secrets.io \
+			--helm-chart external-secrets \
+			--revision v0.12.1 \
+			--dest-server https://kubernetes.default.svc \
+			--dest-namespace external-secrets \
+			--sync-policy automated \
+			--sync-option CreateNamespace=true
+		sops -d external-secrets/secret.yaml | kubectl apply -f -
