@@ -24,22 +24,6 @@ init-argocd:
 		argocd account update-password
 		kubectl delete secret argocd-initial-admin-secret -n argocd
 
-.PHONY: deploy-dns
-deploy-dns:
-		kubectl apply -f redis.yaml
-		kubectl apply -f blocky.yaml
-
-.PHONY: deploy-web
-deploy-web:
-		kubectl apply -f homepage.yaml
-		kubectl apply -f sillytavern.yaml
-		kubectl apply -f navidrome.yaml
-		kubectl apply -f cloudflared.yaml
-		kubectl apply -f oai.yaml
-
-.PHONY: deploy
-deploy: deploy-web deploy-dns
-
 .PHONY: deploy-argocd-apps
 deploy-argocd-apps:
 		argocd relogin --grpc-web
