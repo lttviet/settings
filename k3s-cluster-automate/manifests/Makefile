@@ -7,6 +7,7 @@ init:
 		kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.1/cert-manager.yaml
 		kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.9/config/manifests/metallb-native.yaml
 		kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.14.0-rc3/manifests/install.yaml
+		kubectl patch configmap argocd-cm -n argocd --type merge -p '{"data":{"kustomize.buildOptions":"--enable-helm"}}'
 		kubectl patch configmap argocd-cmd-params-cm -n argocd --type merge -p '{"data":{"server.insecure":"true"}}'
 		kubectl delete pod -n argocd -l app.kubernetes.io/name=argocd-server
 
