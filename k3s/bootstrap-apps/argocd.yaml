@@ -14,7 +14,7 @@ spec:
     path: k3s/argocd
   destination:
     server: https://kubernetes.default.svc
-    namespace:
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
