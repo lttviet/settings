@@ -15,19 +15,6 @@ update: true
 package_update: true
 package_upgrade: true
 
-write_files:
-- path: /etc/auto.master
-  append: true
-  content: |
-    /nfs   /etc/auto.nfs
-- path: /etc/auto.nfs
-  content: |
-    configs   -fstype=nfs4  ${nas_server}:/configs"
-    data      -fstype=nfs4  ${nas_server}:/data"
-    download  -fstype=nfs4  ${nas_server}:/download"
-    logs      -fstype=nfs4  ${nas_server}:/logs"
-    media     -fstype=nfs4  ${nas_server}:/media"
-
 packages:
   - qemu-guest-agent # need this for guest mode
   - net-tools
@@ -36,9 +23,7 @@ packages:
   - unattended-upgrades
   - cifs-utils
   - nfs-common
-  - autofs
 runcmd:
-  - service autofs reload
   - timedatectl set-timezone America/New_York
   - systemctl enable qemu-guest-agent
   - systemctl start qemu-guest-agent
