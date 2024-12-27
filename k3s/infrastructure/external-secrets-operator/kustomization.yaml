@@ -9,7 +9,3 @@ helmCharts:
     releaseName: external-secrets
     namespace: external-secrets
     includeCRDs: true
-
-resources:
-  - cluster-secret-store.yaml
-  - test-external-secret.yaml
