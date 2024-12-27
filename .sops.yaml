@@ -2,8 +2,8 @@ creation_rules:
   - path_regex: secrets-k3s\.yaml$
     encrypted_regex: '^(stringData|data)$'
     age: 'age1502nsq9wdlyhf94vdxtzedn4ulsqqr044lhmzdf3775ltvaylstsxw6705'
-  - path_regex: secrets-tf\.yaml$
+  - path_regex: secrets-tf\.enc\.yaml$
     age: 'age1502nsq9wdlyhf94vdxtzedn4ulsqqr044lhmzdf3775ltvaylstsxw6705'
-  - path_regex: secret\.yaml$
+  - path_regex: secret\.enc\.yaml$
     encrypted_regex: '^(stringData|data)$'
     age: 'age1502nsq9wdlyhf94vdxtzedn4ulsqqr044lhmzdf3775ltvaylstsxw6705'
