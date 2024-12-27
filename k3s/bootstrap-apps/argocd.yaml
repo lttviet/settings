@@ -1,0 +1,23 @@
+# self managed Argo CD app
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/lttviet/settings.git
+    targetRevision: HEAD
+    path: k3s/argocd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
