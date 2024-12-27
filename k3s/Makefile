@@ -6,5 +6,8 @@ bootstrap:
 		kubectl apply -n argocd -k argocd
 		# restart argocd
 		kubectl delete pod -n argocd -l app.kubernetes.io/name=argocd-server
+		# create Secret for Infisical remote secret store
+		kubectl create namespace external-secrets
+		sops -d infisical-secret.enc.yaml | kubectl apply -f -
 		# bootstrap the cluster with App of Apps
 		kubectl apply -f root-app.yaml
