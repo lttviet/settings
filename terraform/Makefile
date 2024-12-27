@@ -5,7 +5,7 @@ init:
 		tofu init
 
 .PHONY: plan
-plan:
+plan: init
 		tofu fmt
 		tofu plan
 
