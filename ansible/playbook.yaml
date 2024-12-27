@@ -4,9 +4,9 @@
       shell: >
         curl -sfL https://get.k3s.io |
         sh -s - server --cluster-init
-          --disable servicelb
-          --kube-proxy-arg proxy-mode=ipvs
-          --kube-proxy-arg ipvs-strict-arp
+        --disable servicelb
+        --kube-proxy-arg proxy-mode=ipvs
+        --kube-proxy-arg ipvs-strict-arp
       environment:
         K3S_TOKEN: '{{ k3s_token }}'
       args:

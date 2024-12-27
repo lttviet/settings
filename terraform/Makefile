@@ -4,16 +4,11 @@ default: init
 init:
 		tofu init
 
-.PHONY: fmt
-fmt:
-		tofu fmt
-
 .PHONY: plan
-plan: fmt
+plan: init
+		tofu fmt
 		tofu plan
 
-.PHONY: deploy
-deploy: init
+.PHONY: provision
+provision: init
 		tofu apply --auto-approve
-		sleep 10
-		ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/inventory.yaml ansible/playbook.yaml
