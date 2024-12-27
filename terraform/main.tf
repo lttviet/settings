@@ -165,7 +165,7 @@ module "k3s_vms" {
 
 # Generate ansible inventory.yaml
 locals {
-  inventory_content = templatefile("${path.root}/ansible/inventory.yaml.tftpl", {
+  inventory_content = templatefile("${path.root}/../ansible/inventory.yaml.tftpl", {
     nodes = {
       for k, v in module.k3s_vms :
       k => {
@@ -179,7 +179,7 @@ locals {
 
 resource "local_file" "inventory" {
   content  = local.inventory_content
-  filename = "${path.module}/ansible/inventory.yaml"
+  filename = "${path.root}/../ansible/inventory.yaml"
 }
 
 output "nas_ip" {
