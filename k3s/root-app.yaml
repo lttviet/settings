@@ -8,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/lttviet/settings.git
-    targetRevision: argocd-bootstrap
+    targetRevision: HEAD
     path: k3s/bootstrap-apps
   destination:
     server: https://kubernetes.default.svc
