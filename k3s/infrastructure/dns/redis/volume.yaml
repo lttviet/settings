@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: redis
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs
+  nfs:
+    server: 192.168.0.40
+    path: '/data'
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis
+  namespace: blocky
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  volumeName: redis
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: nfs
