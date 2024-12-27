@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/lttviet/settings.git
-    targetRevision: argocd-metallb
+    targetRevision: HEAD
     path: k3s/infrastructure/metallb
   destination:
     server: https://kubernetes.default.svc
