@@ -116,7 +116,7 @@ resource "proxmox_virtual_environment_file" "k3s_user_data_list" {
     data = templatefile("${path.root}/cloud-init/base-user-data.yaml.tftpl", {
       username        = var.username
       ssh_public_keys = local.ssh_public_keys
-      nas_server = var.nas_ipv4_address
+      nas_server      = var.nas_ipv4_address
     })
 
     file_name = "${each.key}-user-data.yaml"
@@ -167,7 +167,7 @@ module "k3s_vms" {
 locals {
   inventory_content = templatefile("${path.root}/ansible/inventory.yaml.tftpl", {
     nodes = {
-      for k, v in module.k3s_vms:
+      for k, v in module.k3s_vms :
       k => {
         ip   = v.ipv4_address
         role = var.k3s_nodes[k].role
