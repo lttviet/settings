@@ -1,18 +1,17 @@
-# App of Apps to manage bootstrap process
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root
+  name: metallb
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/lttviet/settings.git
     targetRevision: HEAD
-    path: k3s/bootstrap
+    path: k3s/infrastructure/metallb
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: metallb-system
   syncPolicy:
     automated:
       prune: true

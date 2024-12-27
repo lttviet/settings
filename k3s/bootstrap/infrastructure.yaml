@@ -1,15 +1,19 @@
-# App of Apps to manage bootstrap process
+# manage /k3/infrastrucutre app
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root
+  name: argocd
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: '1'
 spec:
   project: default
   source:
     repoURL: https://github.com/lttviet/settings.git
     targetRevision: HEAD
-    path: k3s/bootstrap
+    path: k3s/infrastructure
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
