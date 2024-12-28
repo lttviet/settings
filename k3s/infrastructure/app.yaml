@@ -1,8 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metallb
+  name: infrastructure-controllers
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: '0'
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -10,10 +12,9 @@ spec:
   source:
     repoURL: https://github.com/lttviet/settings.git
     targetRevision: HEAD
-    path: k3s/infrastructure/metallb
+    path: k3s/infrastructure/controllers
   destination:
     server: https://kubernetes.default.svc
-    namespace: metallb-system
   syncPolicy:
     automated:
       prune: true
@@ -24,44 +25,20 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: external-secrets-operator
+  name: infrastructure-configs
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  project: default
-  source:
-    repoURL: https://github.com/lttviet/settings.git
-    targetRevision: HEAD
-    path: k3s/infrastructure/external-secrets-operator
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: external-secrets
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: dns
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd.argoproj.io/sync-wave: '1'
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: https://github.com/lttviet/settings.git
     targetRevision: HEAD
-    path: k3s/infrastructure/dns
+    path: k3s/infrastructure/configs
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
   syncPolicy:
     automated:
       prune: true
