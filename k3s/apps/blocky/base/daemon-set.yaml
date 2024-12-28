@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: blocky
-  namespace: blocky
   labels:
     app: blocky
 spec:

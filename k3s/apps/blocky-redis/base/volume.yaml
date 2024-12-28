@@ -11,14 +11,13 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs
   nfs:
-    server: 192.168.0.40
+    server: 192.168.0.0
     path: '/data'
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: redis
-  namespace: blocky
 spec:
   accessModes:
     - ReadWriteMany

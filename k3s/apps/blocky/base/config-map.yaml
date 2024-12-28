@@ -2,7 +2,6 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: blocky-config
-  namespace: blocky
 data:
   config.yml: |
     upstreams:
