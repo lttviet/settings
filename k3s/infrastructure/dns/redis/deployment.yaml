@@ -4,16 +4,16 @@ metadata:
   name: redis
   namespace: blocky
   labels:
-    app: blocky-redis
+    app: redis
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: blocky-redis
+      app: redis
   template:
     metadata:
       labels:
-        app: blocky-redis
+        app: redis
     spec:
       containers:
         - name: redis
