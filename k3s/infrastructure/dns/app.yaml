@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: https://github.com/lttviet/settings.git
     targetRevision: bootstrap-dns
-    path: k3s/infrastructure/dns/redis
+    path: k3s/infrastructure/dns/blocky-redis
   destination:
     server: https://kubernetes.default.svc
     namespace: blocky
