@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/lttviet/settings.git
     targetRevision: HEAD
-    path: k3s/infrastructure/metallb
+    path: k3s/infrastructure/metallb/overlays/dev
     directory:
       recurse: true
   destination:
@@ -35,7 +35,7 @@ spec:
   source:
     repoURL: https://github.com/lttviet/settings.git
     targetRevision: HEAD
-    path: k3s/infrastructure/external-secrets-operator
+    path: k3s/infrastructure/external-secrets-operator/overlays/dev
   destination:
     server: https://kubernetes.default.svc
     namespace: external-secrets
