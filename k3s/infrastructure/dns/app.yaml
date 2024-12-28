@@ -12,7 +12,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/lttviet/settings.git
-    targetRevision: bootstrap-dns
+    targetRevision: HEAD
     path: k3s/infrastructure/dns/blocky-redis
   destination:
     server: https://kubernetes.default.svc
@@ -37,7 +37,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/lttviet/settings.git
-    targetRevision: bootstrap-dns
+    targetRevision: HEAD
     path: k3s/infrastructure/dns/blocky
   destination:
     server: https://kubernetes.default.svc
@@ -62,7 +62,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/lttviet/settings.git
-    targetRevision: bootstrap-dns
+    targetRevision: HEAD
     path: k3s/infrastructure/dns/coredns
   destination:
     server: https://kubernetes.default.svc
