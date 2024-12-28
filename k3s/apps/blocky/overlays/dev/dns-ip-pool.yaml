@@ -6,3 +6,4 @@ metadata:
 spec:
   addresses:
     - 192.168.0.30/32
+  autoAssign: false
