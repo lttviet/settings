@@ -9,4 +9,4 @@ bootstrap:
 		# create Secret for remote secret store
 		sops -d remote-secret.enc.yaml | kubectl apply -f -
 		# bootstrap the cluster with App of Apps
-		kubectl apply -f root-app.yaml
+		kubectl apply -f bootstrap-dev.yaml
