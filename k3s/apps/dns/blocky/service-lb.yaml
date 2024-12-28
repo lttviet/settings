@@ -4,7 +4,7 @@ metadata:
   name: blocky-dns-lb
   namespace: blocky
   annotations:
-    metallb.universe.tf/address-pool: local-dns-pool
+    metallb.universe.tf/address-pool: dns-pool
 spec:
   type: LoadBalancer
   ports:
