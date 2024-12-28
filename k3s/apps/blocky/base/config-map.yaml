@@ -2,6 +2,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: blocky-config
+  annotations:
+    argocd.argoproj.io/sync-wave: '0'
 data:
   config.yml: |
     upstreams:

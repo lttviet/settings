@@ -4,6 +4,7 @@ metadata:
   name: blocky-dns-lb
   annotations:
     metallb.universe.tf/address-pool: dns-pool
+    argocd.argoproj.io/sync-wave: '2'
 spec:
   type: LoadBalancer
   ports:

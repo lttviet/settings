@@ -4,6 +4,8 @@ metadata:
   name: blocky
   labels:
     app: blocky
+  annotations:
+    argocd.argoproj.io/sync-wave: '1'
 spec:
   selector:
     matchLabels:
