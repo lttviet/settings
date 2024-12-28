@@ -16,3 +16,17 @@ patches:
       spec:
         nfs:
           server: 192.168.0.40
+  - target:
+      kind: Deployment
+      name: redis
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: redis
+      spec:
+        template:
+          spec:
+            containers:
+              - name: redis
+                image: redis/redis-stack:7.4.0-v1
