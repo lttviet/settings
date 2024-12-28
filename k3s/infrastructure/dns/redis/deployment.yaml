@@ -24,6 +24,7 @@ spec:
           volumeMounts:
             - name: storage
               mountPath: /data
+              subPath: blocky-redis
       volumes:
         - name: storage
           persistentVolumeClaim:
