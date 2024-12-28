@@ -3,6 +3,9 @@ kind: IPAddressPool
 metadata:
   name: traefik-pool
   namespace: metallb-system
+  annotations:
+    argocd.argoproj.io/sync-wave: '1'
+
 spec:
   addresses:
     - 192.168.0.20/32
