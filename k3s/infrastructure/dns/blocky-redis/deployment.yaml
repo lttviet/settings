@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: blocky
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis/redis-stack-server:7.4.0-v1
+          ports:
+            - name: database
+              containerPort: 6379
+          volumeMounts:
+            - name: storage
+              mountPath: /data
+              subPath: blocky-redis
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: redis

@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blocky-config
+  namespace: blocky
+data:
+  config.yml: |
+    upstreams:
+      groups:
+        default:
+          - https://security.cloudflare-dns.com/dns-query
+          - https://dns.quad9.net/dns-query
+          - https://dns.google/dns-query
+
+    # DNS servers to resolve upstream DoH
+    bootstrapDns:
+      - tcp+udp:1.1.1.1
+      - tcp+udp:8.8.8.8
+
+    blocking:
+      denylists:
+        ads:
+          - https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/pro.txt
+      clientGroupsBlock:
+        default:
+          - ads
+      loading:
+        downloads:
+          timeout: 60s
+          attempts: 10
+          cooldown: 20s
+
+    customDNS:
+      filterUnmappedTypes: true
+      mapping:
+        homelab1.local.lttviet.com: 192.168.0.107
+        homelab2.local.lttviet.com: 192.168.0.108
+        homelab3.local.lttviet.com: 192.168.0.109
+        local.lttviet.com: 192.168.0.20
+
+    caching:
+      minTime: 5m
+      maxTime: 30m
+      prefetching: true
+
+    redis:
+      address: redis:6379
+      database: 0
+      required: true
+      connectionAttempts: 10
+      connectionCooldown: 3s
+
+    ports:
+      dns: 53
+      http: 80
+
+    log:
+      level: info
