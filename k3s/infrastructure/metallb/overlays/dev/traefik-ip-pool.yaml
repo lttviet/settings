@@ -1,8 +1,9 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: local-dns-pool
+  name: traefik-pool
   namespace: metallb-system
+
 spec:
   addresses:
-    - 192.168.0.30/32
+    - 192.168.0.20/32

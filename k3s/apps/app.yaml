@@ -1,29 +1,3 @@
-# app to bootstrap dns
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: blocky-redis
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/sync-wave: '1'
-spec:
-  project: default
-  source:
-    repoURL: https://github.com/lttviet/settings.git
-    targetRevision: HEAD
-    path: k3s/infrastructure/dns/blocky-redis
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: blocky
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -31,14 +5,12 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/sync-wave: '2'
 spec:
   project: default
   source:
     repoURL: https://github.com/lttviet/settings.git
     targetRevision: HEAD
-    path: k3s/infrastructure/dns/blocky
+    path: k3s/apps/blocky/overlays/dev
   destination:
     server: https://kubernetes.default.svc
     namespace: blocky
@@ -52,21 +24,19 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: coredns-custom
+  name: blocky-redis
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/sync-wave: '3'
 spec:
   project: default
   source:
     repoURL: https://github.com/lttviet/settings.git
     targetRevision: HEAD
-    path: k3s/infrastructure/dns/coredns
+    path: k3s/apps/blocky-redis/overlays/dev
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
+    namespace: blocky
   syncPolicy:
     automated:
       prune: true

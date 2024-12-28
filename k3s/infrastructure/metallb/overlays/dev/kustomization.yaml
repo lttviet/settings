@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: metallb-system
 
 resources:
-  - github.com/metallb/metallb/config/native?ref=v0.14.9
+  - ../../base
   - traefik-ip-pool.yaml
-  - dns-ip-pool.yaml
   - l2-ad.yaml
