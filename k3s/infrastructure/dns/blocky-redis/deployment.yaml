@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: redis
-          image: redis/redis-stack:7.4.0-v1
+          image: redis/redis-stack-server:7.4.0-v1
           ports:
             - name: database
               containerPort: 6379
