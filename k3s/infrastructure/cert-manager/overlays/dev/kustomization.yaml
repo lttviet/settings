@@ -3,9 +3,6 @@ kind: Kustomization
 
 resources:
   - ../../base
-  - doppler-css.yaml
-  - external-secret.yaml
-  - cluster-issuer.yaml
 
 # https://github.com/argoproj/argo-cd/issues/6728
 patches:
