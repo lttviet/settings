@@ -4,13 +4,11 @@ metadata:
   name: suwayomi
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    cert-manager.io/cluster-issuer: letsencrypt
     argocd.argoproj.io/sync-wave: '4'
 spec:
   tls:
     - hosts:
         - '*.local.lttviet.com'
-      secretName: lttviet.com
   rules:
     - host: manga.local.lttviet.com
       http:
