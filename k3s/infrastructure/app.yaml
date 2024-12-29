@@ -87,7 +87,7 @@ spec:
     path: k3s/infrastructure/common/overlays/dev
   destination:
     server: https://kubernetes.default.svc
-    namespace: external-secrets
+    namespace: cert-manager
   syncPolicy:
     automated:
       prune: true
