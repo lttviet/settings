@@ -153,7 +153,7 @@ module "k3s_vms" {
   startup_order = "3"
 
   cpu_cores = each.value.cpu_cores
-  memory    = 8192
+  memory    = each.value.memory
 
   disk_datastore_id = "local-zfs"
   disk_size         = 10

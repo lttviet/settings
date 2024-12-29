@@ -45,6 +45,7 @@ variable "k3s_nodes" {
     pve_node  = string
     cpu_cores = number
     role      = string
+    memory    = number
   }))
   description = "Map of k3s nodes to configuration"
   default = {
@@ -52,16 +53,19 @@ variable "k3s_nodes" {
       pve_node  = "homelab1",
       cpu_cores = 8,
       role      = "server",
+      memory    = 8192
     },
     beta = {
       pve_node  = "homelab2",
       cpu_cores = 8,
       role      = "agent",
+      memory    = 16384
     },
     gamma = {
       pve_node  = "homelab3",
       cpu_cores = 4,
       role      = "agent",
+      memory    = 12288
     }
   }
 
