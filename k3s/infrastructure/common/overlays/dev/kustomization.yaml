@@ -3,6 +3,3 @@ kind: Kustomization
 
 resources:
   - ../../base
-  - cluster-issuer.yaml
-  - doppler-css.yaml
-  - external-secrets.yaml # TODO move this to ingress

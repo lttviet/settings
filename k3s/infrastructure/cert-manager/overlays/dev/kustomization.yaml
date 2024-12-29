@@ -3,12 +3,3 @@ kind: Kustomization
 
 resources:
   - ../../base
-
-# https://github.com/argoproj/argo-cd/issues/6728
-patches:
-  - target:
-      kind: CustomResourceDefinition
-      labelSelector: app.kubernetes.io/instance=cert-manager
-    patch: |-
-      - op: remove
-        path: /metadata/labels/app.kubernetes.io~1instance
