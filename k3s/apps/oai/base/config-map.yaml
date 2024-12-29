@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oai-greeting
+  annotations:
+    argocd.argoproj.io/sync-wave: '0'
+data:
+  greeting.md: |
+    My personal LLM reverse proxy server!
