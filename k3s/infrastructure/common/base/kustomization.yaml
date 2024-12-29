@@ -3,5 +3,5 @@ kind: Kustomization
 
 resources:
   - doppler-css.yaml
-  - external-secrets.yaml
+  - cf-external-secret.yaml
   - cluster-issuer.yaml
