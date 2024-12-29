@@ -153,10 +153,10 @@ module "k3s_vms" {
   startup_order = "3"
 
   cpu_cores = each.value.cpu_cores
-  memory    = 8192
+  memory    = each.value.memory
 
   disk_datastore_id = "local-zfs"
-  disk_size         = 10
+  disk_size         = 50
 
   cloud_image_file_id = proxmox_virtual_environment_download_file.cloud_images[each.value.pve_node].id
   user_data_file_id   = proxmox_virtual_environment_file.k3s_user_data_list[each.key].id
