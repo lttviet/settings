@@ -1,0 +1,131 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homepage
+  labels:
+    app.kubernetes.io/name: homepage
+data:
+  kubernetes.yaml: |
+    mode: cluster
+  settings.yaml: |
+    statusStyle: dot
+
+    quicklaunch:
+      searchDescriptions: true
+      hideInternetSearch: true
+      showSearchSuggestions: true
+      hideVisitURL: true
+
+    layout:
+      Network:
+        icon: mdi-network-pos
+        useEqualHeights: true
+        style: row
+        columns: 2
+
+      GitOps:
+        icon: mdi-git
+        useEqualHeights: true
+        style: row
+        columns: 2
+
+      Apps:
+        icon: mdi-apps
+        useEqualHeights: true
+        style: row
+        columns: 3
+
+      Developer:
+        useEqualHeights: true
+        style: row
+        columns: 3
+
+      Social:
+        useEqualHeights: true
+        style: row
+        columns: 3
+  custom.css: ''
+  custom.js: ''
+  bookmarks.yaml: |
+    - Developer:
+        - Github:
+            - icon: github-light
+              href: https://github.com/lttviet
+
+        - OpenAI:
+            - icon: openai
+              href: https://platform.openai.com/usage
+
+        - Icons:
+            - abbr: ico
+              href: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/ICONS.md
+
+        - Emoji:
+            - abbr: em
+              href: https://github.com/ikatyang/emoji-cheat-sheet/tree/master?tab=readme-ov-file#money
+
+        - Cloudflare Access:
+            - icon: cloudflare
+              href: https://lttviet.cloudflareaccess.com/
+
+    - Social:
+        - Reddit:
+            - icon: reddit
+              href: https://old.reddit.com/
+
+        - Hacker News:
+            - abbr: HN
+              href: https://hckrnews.com/
+  services.yaml: |
+    - Network:
+        - proxmox:
+            icon: proxmox
+            href: https://homelab1.local.lttviet.com:8006
+            description: hypervisor
+            siteMonitor: https://192.168.0.107:8006
+
+        - router:
+            icon: router
+            href: http://192.168.0.1
+            description: tp-link
+            siteMonitor: https://192.168.0.1
+
+    - GitOps:
+        - Argo CD:
+            icon: argocd
+            href: https://argocd.local.lttviet.com
+            description: Argo CD
+            siteMonitor: http://argocd-server.argocd
+
+    - Apps:
+        - oai:
+            icon: bookstack
+            href: http://oai.local.lttviet.com/
+            description: oai
+            siteMonitor: http://oai-clusterip
+
+        - sillytavern:
+            icon: bookstack
+            href: https://tavern.local.lttviet.com
+            description: LLM
+            siteMonitor: http://sillytavern-clusterip
+  widgets.yaml: |
+    - kubernetes:
+        cluster:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+          label: "cluster"
+        nodes:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+    - resources:
+        uptime: true
+        network: true
+    - search:
+        provider: google
+        target: _blank
+  docker.yaml: ''
