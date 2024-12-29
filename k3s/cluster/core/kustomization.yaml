@@ -2,6 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - doppler-css.yaml
   - cf-external-secret.yaml
   - cluster-issuer.yaml
+  - coredns-cm.yaml
+  - doppler-css.yaml
+  - ippools.yaml
+  - l2-ad.yaml

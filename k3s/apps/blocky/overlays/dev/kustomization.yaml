@@ -3,5 +3,3 @@ kind: Kustomization
 
 resources:
   - ../../base
-  - coredns-cm.yaml
-  - dns-ip-pool.yaml
