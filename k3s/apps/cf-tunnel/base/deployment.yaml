@@ -4,6 +4,8 @@ metadata:
   name: cf-tunnel
   labels:
     app: cf-tunnel
+  annotations:
+    reloader.stakater.com/auto: 'true'
 spec:
   replicas: 2
   selector:
