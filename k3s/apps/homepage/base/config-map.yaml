@@ -116,6 +116,12 @@ data:
             description: Manga reader
             siteMonitor: https://manga.local.lttviet.com
 
+        - navidrome:
+            icon: navidrome
+            href: https://audio.local.lttviet.com
+            description: Music player
+            siteMonitor: https://audio.local.lttviet.com
+
   widgets.yaml: |
     - kubernetes:
         cluster:
