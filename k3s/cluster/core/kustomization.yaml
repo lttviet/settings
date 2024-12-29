@@ -9,3 +9,4 @@ resources:
   - doppler-css.yaml
   - ippools.yaml
   - l2-ad.yaml
+  - tls-store.yaml
