@@ -6,6 +6,7 @@ metadata:
     app: blocky
   annotations:
     argocd.argoproj.io/sync-wave: '1'
+    reloader.stakater.com/auto: 'true'
 spec:
   selector:
     matchLabels:

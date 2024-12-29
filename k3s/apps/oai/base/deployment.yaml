@@ -6,6 +6,7 @@ metadata:
     app: oai
   annotations:
     argocd.argoproj.io/sync-wave: '2'
+    reloader.stakater.com/auto: 'true'
 spec:
   replicas: 1
   selector:
