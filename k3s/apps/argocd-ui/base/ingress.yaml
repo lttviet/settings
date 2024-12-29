@@ -6,12 +6,10 @@ metadata:
   namespace: argocd
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   tls:
     - hosts:
         - '*.local.lttviet.com'
-      secretName: lttviet.com
   rules:
     - host: argocd.local.lttviet.com
       http:

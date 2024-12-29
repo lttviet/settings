@@ -4,12 +4,10 @@ metadata:
   name: sillytavern
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   tls:
     - hosts:
         - '*.local.lttviet.com'
-      secretName: lttviet.com
   rules:
     - host: tavern.local.lttviet.com
       http:
