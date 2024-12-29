@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: suwayomi
+  labels:
+    app: suwayomi
+  annotations:
+    argocd.argoproj.io/sync-wave: '2'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: suwayomi
+  template:
+    metadata:
+      labels:
+        app: suwayomi
+    spec:
+      containers:
+        - name: suwayomi
+          image: ghcr.io/suwayomi/tachidesk:v1.1.1-r1650
+          ports:
+            - name: http
+              containerPort: 80
+          env:
+            - name: TZ
+              value: 'America/New_York'
+            - name: AUTO_DOWNLOAD_CHAPTERS
+              value: 'true'
+            - name: AUTO_DOWNLOAD_NEW_CHAPTERS_LIMIT
+              value: '10'
+            - name: EXTENSION_REPOS
+              value: '["https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"]'
+            - name: BIND_PORT
+              value: '80'
+            - name: WEB_UI_CHANNEL
+              value: 'preview'
+          volumeMounts:
+            - name: suwayomi-download
+              mountPath: /home/suwayomi/.local/share/Tachidesk/downloads
+              subPath: suwayomi
+            - name: suwayomi-data
+              mountPath: /home/suwayomi/.local/share/Tachidesk
+              subPath: suwayomi
+      volumes:
+        - name: suwayomi-download
+          persistentVolumeClaim:
+            claimName: suwayomi-download
+        - name: suwayomi-data
+          persistentVolumeClaim:
+            claimName: suwayomi-data
