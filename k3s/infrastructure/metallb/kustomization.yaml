@@ -3,3 +3,5 @@ kind: Kustomization
 
 resources:
   - github.com/metallb/metallb/config/native?ref=v0.14.9
+  - l2-ad.yaml
+  - traefik-ip-pool.yaml
