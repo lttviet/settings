@@ -101,7 +101,7 @@ data:
         - oai:
             icon: bookstack
             href: https://oai.local.lttviet.com
-            description: oai
+            description: LLM reverse proxy
             siteMonitor: https://oai.local.lttviet.com
 
         - sillytavern:
@@ -109,6 +109,13 @@ data:
             href: https://tavern.local.lttviet.com
             description: LLM
             siteMonitor: https://tavern.local.lttviet.com
+
+        - suwayomi:
+            icon: sh-suwayomi
+            href: https://manga.local.lttviet.com
+            description: Manga reader
+            siteMonitor: https://manga.local.lttviet.com
+
   widgets.yaml: |
     - kubernetes:
         cluster:
