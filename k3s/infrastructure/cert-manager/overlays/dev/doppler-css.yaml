@@ -1,0 +1,16 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  name: doppler
+  annotations:
+    argocd.argoproj.io/sync-wave: '0'
+spec:
+  provider:
+    doppler:
+      auth:
+        secretRef:
+          dopplerToken:
+            namespace: external-secrets
+            name: remote-auth
+            key: doppler-token
+      nameTransformer: lower-kebab
