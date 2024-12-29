@@ -95,20 +95,20 @@ data:
             icon: argocd
             href: https://argocd.local.lttviet.com
             description: Argo CD
-            siteMonitor: http://argocd-server.argocd
+            siteMonitor: https://argocd.local.lttviet.com
 
     - Apps:
         - oai:
             icon: bookstack
-            href: http://oai.local.lttviet.com/
+            href: https://oai.local.lttviet.com
             description: oai
-            siteMonitor: http://oai-clusterip
+            siteMonitor: https://oai.local.lttviet.com
 
         - sillytavern:
             icon: bookstack
             href: https://tavern.local.lttviet.com
             description: LLM
-            siteMonitor: http://sillytavern-clusterip
+            siteMonitor: https://tavern.local.lttviet.com
   widgets.yaml: |
     - kubernetes:
         cluster:
