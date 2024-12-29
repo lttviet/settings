@@ -1,12 +1,14 @@
-# `/infrastructure`
+# `/cluster`
 
-`/infrastructure` contains all the core components of the k3s cluster.
+`/cluster` contains all the core apps for the cluster.
 
-## `/infrastructure/controllers`
+## Apps
 
 - [MetalLB](https://metallb.io/): replace default k3s load balancer
 - [External Secrets Operator](https://external-secrets.io/): inject secrets from remote sources into cluster
+- [cert-manager](https://cert-manager.io/): generate TLS certificates
+- [Reloader](https://github.com/stakater/Reloader): watch for changes in ConfigMap and reload pods
 
-## `/infrastructure/configs`
+## `/cluster/core`
 
-It exposes 1 IP pool for Traefik.
+Configuration for the core apps.
