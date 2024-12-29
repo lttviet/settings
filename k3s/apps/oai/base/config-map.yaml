@@ -18,6 +18,6 @@ data:
     MAX_OUTPUT_TOKENS_OPENAI: 2048
     MAX_OUTPUT_TOKENS_ANTHROPIC: 2048
     SHOW_TOKEN_COSTS: true
-    ALLOWED_MODEL_FAMILIES=gemini-flash,gemini-pro,gemini-ultra,aws-claude,aws-claude-opus
-    GOOGLE_AI_KEY: "{{ .google-ai-key }}"
-    AWS_CREDENTIALS: "{{ .aws-secret-access-key }}"
+    ALLOWED_MODEL_FAMILIES: "gemini-flash,gemini-pro,gemini-ultra,aws-claude,aws-claude-opus"
+    GOOGLE_AI_KEY: "{{ .gkey }}"
+    AWS_CREDENTIALS: "{{ .awskey }}"
