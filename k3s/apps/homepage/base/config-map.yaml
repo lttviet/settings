@@ -56,9 +56,13 @@ data:
             - icon: openai
               href: https://platform.openai.com/usage
 
-        - Icons:
+        - Icons 1:
             - abbr: ico
               href: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/ICONS.md
+
+        - Icons 2:
+            - abbr: ico
+              href: https://selfh.st/icons/
 
         - Emoji:
             - abbr: em
@@ -115,6 +119,12 @@ data:
             href: https://manga.local.lttviet.com
             description: Manga reader
             siteMonitor: https://manga.local.lttviet.com
+
+        - navidrome:
+            icon: navidrome
+            href: https://audio.local.lttviet.com
+            description: Music player
+            siteMonitor: https://audio.local.lttviet.com
 
   widgets.yaml: |
     - kubernetes:

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: navidrome
+  labels:
+    app: navidrome
+  annotations:
+    argocd.argoproj.io/sync-wave: '2'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: navidrome
+  template:
+    metadata:
+      labels:
+        app: navidrome
+    spec:
+      containers:
+        - name: navidrome
+          image: deluan/navidrome:0.54.3
+          ports:
+            - name: http
+              containerPort: 4533
+          volumeMounts:
+            - name: navidrome-storage
+              mountPath: /data
+              subPath: navidrome
+            - name: music-storage
+              mountPath: /music
+              subPath: music
+              readOnly: true
+      volumes:
+        - name: navidrome-storage
+          persistentVolumeClaim:
+            claimName: navidrome
+        - name: music-storage
+          persistentVolumeClaim:
+            claimName: music
