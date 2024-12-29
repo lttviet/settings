@@ -56,9 +56,13 @@ data:
             - icon: openai
               href: https://platform.openai.com/usage
 
-        - Icons:
+        - Icons 1:
             - abbr: ico
               href: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/ICONS.md
+
+        - Icons 2:
+            - abbr: ico
+              href: https://selfh.st/icons/
 
         - Emoji:
             - abbr: em
