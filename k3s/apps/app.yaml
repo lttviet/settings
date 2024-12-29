@@ -147,3 +147,28 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cf-tunnel
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: '3'
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/lttviet/settings.git
+    targetRevision: HEAD
+    path: k3s/apps/cf-tunnel/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cf-tunnel
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
