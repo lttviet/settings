@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: lttviet.com
+  namespace: cert-manager
+  annotations:
+    argocd.argoproj.io/sync-wave: '3'
+spec:
+  secretName: lttviet.com
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+    group: cert-manager.io
+  dnsNames:
+    - '*.local.lttviet.com'
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-allowed: 'true'
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: 'argocd,homepage,navidrome,oai,sillytavern,suwayomi'
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: 'true'
+      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: 'argocd,homepage,navidrome,oai,sillytavern,suwayomi'
