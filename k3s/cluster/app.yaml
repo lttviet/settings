@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/lttviet/settings.git
     targetRevision: HEAD
-    path: k3s/infrastructure/metallb
+    path: k3s/cluster/metallb
   destination:
     server: https://kubernetes.default.svc
     namespace: metallb-system
@@ -37,7 +37,7 @@ spec:
   source:
     repoURL: https://github.com/lttviet/settings.git
     targetRevision: HEAD
-    path: k3s/infrastructure/external-secrets-operator
+    path: k3s/cluster/external-secrets-operator
   destination:
     server: https://kubernetes.default.svc
     namespace: external-secrets
@@ -62,7 +62,7 @@ spec:
   source:
     repoURL: https://github.com/lttviet/settings.git
     targetRevision: HEAD
-    path: k3s/infrastructure/reloader
+    path: k3s/cluster/reloader
   destination:
     server: https://kubernetes.default.svc
     namespace: reloader
@@ -87,7 +87,7 @@ spec:
   source:
     repoURL: https://github.com/lttviet/settings.git
     targetRevision: HEAD
-    path: k3s/infrastructure/cert-manager
+    path: k3s/cluster/cert-manager
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
@@ -113,7 +113,7 @@ spec:
   source:
     repoURL: https://github.com/lttviet/settings.git
     targetRevision: HEAD
-    path: k3s/infrastructure/core
+    path: k3s/cluster/core
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
