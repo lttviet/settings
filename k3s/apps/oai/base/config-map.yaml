@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oai-greeting
+data:
+  greeting.md: |
+    My personal LLM reverse proxy server!
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oai-env-tpl
+data:
+  config.yaml: |
+    NODE_ENV: production
+    MAX_CONTEXT_TOKENS_OPENAI: 65536
+    MAX_CONTEXT_TOKENS_ANTHROPIC: 65536
+    MAX_OUTPUT_TOKENS_OPENAI: 2048
+    MAX_OUTPUT_TOKENS_ANTHROPIC: 2048
+    SHOW_TOKEN_COSTS: true
+    ALLOWED_MODEL_FAMILIES=gemini-flash,gemini-pro,gemini-ultra,aws-claude,aws-claude-opus
+    GOOGLE_AI_KEY: "{{ .google-ai-key }}"
+    AWS_CREDENTIALS: "{{ .aws-secret-access-key }}"
