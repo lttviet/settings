@@ -3,3 +3,27 @@ kind: Kustomization
 
 resources:
   - ../../base
+
+patches:
+  - target:
+      kind: PersistentVolume
+      name: navidrome
+    patch: |-
+      apiVersion: v1
+      kind: PersistentVolume
+      metadata:
+        name: navidrome
+      spec:
+        nfs:
+          server: 192.168.28.40
+  - target:
+      kind: PersistentVolume
+      name: music
+    patch: |-
+      apiVersion: v1
+      kind: PersistentVolume
+      metadata:
+        name: music
+      spec:
+        nfs:
+          server: 192.168.28.40
