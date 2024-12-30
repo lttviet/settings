@@ -21,6 +21,8 @@ spec:
           image: cloudflare/cloudflared:2024.12.2
           args: ['tunnel', '--no-autoupdate', 'run', '--token', '$(cf-token)']
           env:
+            - name: TZ
+              value: America/New_York
             - name: cf-token
               valueFrom:
                 secretKeyRef:

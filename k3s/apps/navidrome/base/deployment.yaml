@@ -19,6 +19,9 @@ spec:
       containers:
         - name: navidrome
           image: deluan/navidrome:0.54.3
+          env:
+            - name: TZ
+              value: America/New_York
           ports:
             - name: http
               containerPort: 4533

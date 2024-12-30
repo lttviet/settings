@@ -17,6 +17,9 @@ spec:
       containers:
         - name: sillytavern
           image: ghcr.io/sillytavern/sillytavern:1.12.9
+          env:
+            - name: TZ
+              value: America/New_York
           ports:
             - name: http
               containerPort: 80

@@ -20,6 +20,9 @@ spec:
       containers:
         - name: oai
           image: khanonci/oai-reverse-proxy:latest
+          env:
+            - name: TZ
+              value: America/New_York
           envFrom:
             - secretRef:
                 name: oai-env
