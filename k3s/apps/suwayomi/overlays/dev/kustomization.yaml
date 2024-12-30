@@ -3,3 +3,16 @@ kind: Kustomization
 
 resources:
   - ../../base
+
+patches:
+  - target:
+      kind: PersistentVolume
+      name: suwayomi
+    patch: |-
+      apiVersion: v1
+      kind: PersistentVolume
+      metadata:
+        name: suwayomi
+      spec:
+        nfs:
+          server: 192.168.28.40

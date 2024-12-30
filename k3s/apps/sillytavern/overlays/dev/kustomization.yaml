@@ -3,3 +3,27 @@ kind: Kustomization
 
 resources:
   - ../../base
+
+patches:
+  - target:
+      kind: PersistentVolume
+      name: sillytavern-config
+    patch: |-
+      apiVersion: v1
+      kind: PersistentVolume
+      metadata:
+        name: sillytavern-config
+      spec:
+        nfs:
+          server: 192.168.28.40
+  - target:
+      kind: PersistentVolume
+      name: sillytavern-data
+    patch: |-
+      apiVersion: v1
+      kind: PersistentVolume
+      metadata:
+        name: sillytavern-data
+      spec:
+        nfs:
+          server: 192.168.28.40

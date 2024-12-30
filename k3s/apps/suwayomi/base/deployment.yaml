@@ -36,16 +36,10 @@ spec:
             - name: WEB_UI_CHANNEL
               value: 'preview'
           volumeMounts:
-            - name: suwayomi-download
-              mountPath: /home/suwayomi/.local/share/Tachidesk/downloads
-              subPath: suwayomi
-            - name: suwayomi-data
+            - name: storage
               mountPath: /home/suwayomi/.local/share/Tachidesk
               subPath: suwayomi
       volumes:
-        - name: suwayomi-download
+        - name: storage
           persistentVolumeClaim:
-            claimName: suwayomi-download
-        - name: suwayomi-data
-          persistentVolumeClaim:
-            claimName: suwayomi-data
+            claimName: suwayomi

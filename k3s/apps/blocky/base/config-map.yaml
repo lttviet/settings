@@ -37,7 +37,7 @@ data:
         homelab1.local.lttviet.com: 192.168.0.107
         homelab2.local.lttviet.com: 192.168.0.108
         homelab3.local.lttviet.com: 192.168.0.109
-        local.lttviet.com: 192.168.0.20
+        local.lttviet.com: 192.168.28.20
 
     caching:
       minTime: 5m
