@@ -25,7 +25,7 @@ variable "nas_pve_node" {
 variable "nas_ipv4_address" {
   type        = string
   description = "IPv4 address for the NAS VM (CIDR notation)"
-  default     = "192.168.0.40/32"
+  default     = "192.168.28.40/32"
 }
 
 variable "nas_ipv4_gateway" {
