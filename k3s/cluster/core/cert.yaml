@@ -13,6 +13,8 @@ spec:
     group: cert-manager.io
   dnsNames:
     - '*.local.lttviet.com'
+    - '*.dev.lttviet.com'
+    - '*.test.lttviet.com'
   secretTemplate:
     annotations:
       reflector.v1.k8s.emberstack.com/reflection-allowed: 'true'
