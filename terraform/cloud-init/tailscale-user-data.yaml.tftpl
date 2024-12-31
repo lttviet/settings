@@ -1,0 +1,49 @@
+#cloud-config
+users:
+- default
+- name: ${username}
+  groups:
+  - sudo
+  shell: /bin/bash
+  ssh_authorized_keys:
+  %{~ for key in ssh_public_keys ~}
+    - ${key}
+  %{~ endfor ~}
+  sudo: ALL=(ALL) NOPASSWD:ALL
+
+update: true
+package_update: true
+package_upgrade: true
+
+write_files:
+- path: /etc/sysctl.d/99-tailscale.conf
+  content: |
+    net.ipv4.ip_forward = 1
+    net.ipv6.conf.all.forwarding = 1
+
+packages:
+  - qemu-guest-agent # need this for guest mode
+  - net-tools
+  - curl
+  - ca-certificates
+  - unattended-upgrades
+  - cifs-utils
+  - nfs-common
+runcmd:
+  - curl -fsSL https://tailscale.com/install.sh | sh
+  - sysctl -p /etc/sysctl.d/99-tailscale.conf
+  - tailscale up --auth-key=${tailscale_token}
+  - tailscale set --ssh
+  - tailscale set --advertise-exit-node
+  - |
+    tailscale set --advertise-routes=\
+    192.168.28.0/24,\
+    192.168.0.1/32,\
+    192.168.0.107/32,\
+    192.168.0.108/32,\
+    192.168.0.109/32
+  - tailscale up
+  - timedatectl set-timezone America/New_York
+  - systemctl enable qemu-guest-agent
+  - systemctl start qemu-guest-agent
+  - echo "done" > /tmp/cloud-config.done
