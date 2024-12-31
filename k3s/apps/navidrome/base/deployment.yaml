@@ -5,6 +5,7 @@ metadata:
   labels:
     app: navidrome
   annotations:
+    reloader.stakater.com/auto: 'true'
     argocd.argoproj.io/sync-wave: '2'
 spec:
   replicas: 1
