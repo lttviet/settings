@@ -2,6 +2,8 @@ default: bootstrap
 
 .PHONY: bootstrap
 bootstrap:
+		# redirect http to https for traefik
+		kubectl apply -f patches/traefik.yaml
 		# install ArgoCD
 		kubectl apply -n argocd -k argocd
 		# restart argocd
