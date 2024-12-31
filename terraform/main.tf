@@ -28,6 +28,7 @@ locals {
   samba_username  = data.sops_file.secrets.data["samba_username"]
   samba_password  = data.sops_file.secrets.data["samba_password"]
   k3s_token       = data.sops_file.secrets.data["k3s_token"]
+  tailscale_token = data.sops_file.secrets.data["tailscale_token"]
   ssh_public_keys = yamldecode(data.sops_file.secrets.raw).ssh_public_keys
 }
 
@@ -188,4 +189,60 @@ output "nas_ip" {
 
 output "k3s_ips" {
   value = [for vm in module.k3s_vms : vm.ipv4_address]
+}
+
+# Provision tailscale nodes
+resource "proxmox_virtual_environment_file" "tailscale_user_data_list" {
+  for_each = var.tailscale_nodes
+
+  content_type = "snippets"
+  datastore_id = "local"
+  node_name    = each.value.pve_node
+
+  source_raw {
+    data = templatefile("${path.root}/cloud-init/tailscale-user-data.yaml.tftpl", {
+      username        = var.username
+      ssh_public_keys = local.ssh_public_keys
+      tailscale_token = local.tailscale_token
+    })
+
+    file_name = "${each.key}-user-data.yaml"
+  }
+}
+
+resource "proxmox_virtual_environment_file" "tailscale_meta_data_list" {
+  for_each = var.tailscale_nodes
+
+  content_type = "snippets"
+  datastore_id = "local"
+  node_name    = each.value.pve_node
+
+  source_raw {
+    data = templatefile("${path.root}/cloud-init/meta-data.yaml.tftpl", {
+      hostname = each.key
+    })
+
+    file_name = "${each.key}-meta-data.yaml"
+  }
+}
+
+module "tailscale_vms" {
+  for_each = var.tailscale_nodes
+
+  source = "./modules/ubuntu-vm"
+
+  hostname     = each.key
+  username     = var.username
+  pve_node     = each.value.pve_node
+  ipv4_address = "dhcp"
+
+  cpu_cores = 4
+  memory    = 1024
+
+  disk_datastore_id = "local-zfs"
+  disk_size         = 10
+
+  cloud_image_file_id = proxmox_virtual_environment_download_file.cloud_images[each.value.pve_node].id
+  user_data_file_id   = proxmox_virtual_environment_file.tailscale_user_data_list[each.key].id
+  meta_data_file_id   = proxmox_virtual_environment_file.tailscale_meta_data_list[each.key].id
 }
