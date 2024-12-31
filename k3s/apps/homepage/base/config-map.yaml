@@ -52,25 +52,26 @@ data:
             - icon: github-light
               href: https://github.com/lttviet
 
-        - OpenAI:
-            - icon: openai
-              href: https://platform.openai.com/usage
+        - Tailscale:
+            - icon: tailscale
+              href: https://login.tailscale.com/admin/machines
 
-        - Icons 1:
+        - LLM arena:
+            - abbr: la
+              href: https://lmarena.ai/?leaderboard
+
+    - Icons:
+        - Dashboard:
             - abbr: ico
               href: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/ICONS.md
 
-        - Icons 2:
+        - selfh.st:
             - abbr: ico
               href: https://selfh.st/icons/
 
         - Emoji:
             - abbr: em
               href: https://github.com/ikatyang/emoji-cheat-sheet/tree/master?tab=readme-ov-file#money
-
-        - Cloudflare Access:
-            - icon: cloudflare
-              href: https://lttviet.cloudflareaccess.com/
 
     - Social:
         - Reddit:
