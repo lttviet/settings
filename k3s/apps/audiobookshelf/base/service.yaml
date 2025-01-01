@@ -8,6 +8,6 @@ spec:
   ports:
     - name: http
       port: 80
-      targetPort: 13378
+      targetPort: 80
   selector:
     app: audiobookshelf

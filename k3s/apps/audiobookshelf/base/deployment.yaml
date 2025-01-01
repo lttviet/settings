@@ -25,7 +25,7 @@ spec:
               value: America/New_York
           ports:
             - name: http
-              containerPort: 13378
+              containerPort: 80
           volumeMounts:
             - name: audiobooks
               mountPath: /audiobooks
