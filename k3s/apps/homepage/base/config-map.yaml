@@ -40,7 +40,7 @@ data:
         style: row
         columns: 3
 
-      Social:
+      Icons:
         useEqualHeights: true
         style: row
         columns: 3
@@ -127,6 +127,11 @@ data:
             description: Music player
             siteMonitor: https://audio.local.lttviet.com
 
+        - audiobookshelf:
+            icon: audiobookshelf
+            href: https://library.local.lttviet.com
+            description: Audiobooks server
+            siteMonitor: https://library.local.lttviet.com
   widgets.yaml: |
     - kubernetes:
         cluster:
