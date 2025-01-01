@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+echo 'Installing system utilities'
+sudo apt install -y net-tools make yq unzip
+pipx install xxh-xxh
+
 # Security tools
 echo 'Installing security tools'
 curl -LO https://github.com/getsops/sops/releases/download/v3.9.2/sops-v3.9.2.linux.amd64
@@ -40,6 +44,14 @@ curl -sSL -o /tmp/k9s.deb "https://github.com/derailed/k9s/releases/download/${K
 sudo apt install -y /tmp/k9s.deb
 rm /tmp/k9s.deb
 
+# nodejs
+echo 'Installing fnm, node 22 and pnpm'
+curl -o- https://fnm.vercel.app/install | bash
+fnm completions > ~/.config/fish/completions/fnm.fish
+fnm install 22
+corepack enable pnpm
+pnpm -v
+
 # media tools
 echo 'Installing tools for downloading audible'
 sudo apt install -y jq ffmpeg
@@ -49,9 +61,6 @@ curl -o $HOME/scripts/audible-convert.sh \
   https://raw.githubusercontent.com/jvanbruegge/nix-config/refs/heads/master/scripts/audible-convert.sh
 sed -i 's/language\.\[0:3\]/language[0:3]/g' \
   $HOME/scripts/audible-convert.sh
-
-echo 'Installing system utilities'
-sudo apt install -y net-tools make yq
 
 # https://learn.microsoft.com/en-us/archive/blogs/wsl/file-system-improvements-to-the-windows-subsystem-for-linux
 # echo 'Mounting windows network drives to WSL'
