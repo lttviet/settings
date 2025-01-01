@@ -1,0 +1,51 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+patches:
+  - target:
+      kind: PersistentVolume
+      name: audiobooks
+    patch: |-
+      apiVersion: v1
+      kind: PersistentVolume
+      metadata:
+        name: audiobooks
+      spec:
+        nfs:
+          server: 192.168.28.40
+  - target:
+      kind: PersistentVolume
+      name: podcasts
+    patch: |-
+      apiVersion: v1
+      kind: PersistentVolume
+      metadata:
+        name: podcasts
+      spec:
+        nfs:
+          server: 192.168.28.40
+  - target:
+      kind: PersistentVolume
+      name: configs
+    patch: |-
+      apiVersion: v1
+      kind: PersistentVolume
+      metadata:
+        name: configs
+      spec:
+        nfs:
+          server: 192.168.28.40
+  - target:
+      kind: PersistentVolume
+      name: metadata
+    patch: |-
+      apiVersion: v1
+      kind: PersistentVolume
+      metadata:
+        name: metadata
+      spec:
+        nfs:
+          server: 192.168.28.40

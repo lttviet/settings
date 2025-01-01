@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: audiobookshelf
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    argocd.argoproj.io/sync-wave: '4'
+spec:
+  tls:
+    - hosts:
+        - '*.local.lttviet.com'
+  rules:
+    - host: library.local.lttviet.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: audiobookshelf
+                port:
+                  number: 80
