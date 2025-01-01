@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: audiobookshelf
+  labels:
+    app: audiobookshelf
+  annotations:
+    reloader.stakater.com/auto: 'true'
+    argocd.argoproj.io/sync-wave: '2'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: audiobookshelf
+  template:
+    metadata:
+      labels:
+        app: audiobookshelf
+    spec:
+      containers:
+        - name: audiobookshelf
+          image: ghcr.io/advplyr/audiobookshelf:2.17.6
+          env:
+            - name: TZ
+              value: America/New_York
+          ports:
+            - name: http
+              containerPort: 13378
+          volumeMounts:
+            - name: audiobooks
+              mountPath: /audiobooks
+              subPath: audiobooks
+            - name: podcasts
+              mountPath: /podcasts
+              subPath: podcasts
+            - name: metadata
+              mountPath: /metadata
+              subPath: metadata
+            - name: configs
+              mountPath: /config
+              subPath: audiobookshelf
+      volumes:
+        - name: audiobooks
+          persistentVolumeClaim:
+            claimName: audiobooks
+        - name: podcasts
+          persistentVolumeClaim:
+            claimName: podcasts
+        - name: metadata
+          persistentVolumeClaim:
+            claimName: metadata
+        - name: configs
+          persistentVolumeClaim:
+            claimName: configs
