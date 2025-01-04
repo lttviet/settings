@@ -35,7 +35,7 @@ spec:
               subPath: podcasts
             - name: metadata
               mountPath: /metadata
-              subPath: metadata
+              subPath: audiobookshelf
             - name: configs
               mountPath: /config
               subPath: audiobookshelf
