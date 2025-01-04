@@ -9,14 +9,17 @@ data:
     upstreams:
       groups:
         default:
-          - https://security.cloudflare-dns.com/dns-query
-          - https://dns.quad9.net/dns-query
-          - https://dns.google/dns-query
+          - 1.1.1.2
+          - 1.0.0.2
+          - 8.8.8.8
+          - 8.8.4.4
 
     # DNS servers to resolve upstream DoH
     bootstrapDns:
       - tcp+udp:1.1.1.1
+      - tcp+udp:1.0.0.1
       - tcp+udp:8.8.8.8
+      - tcp+udp:8.8.4.4
 
     blocking:
       denylists:
