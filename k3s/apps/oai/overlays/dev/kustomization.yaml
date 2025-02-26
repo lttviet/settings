@@ -16,3 +16,8 @@ patches:
       spec:
         nfs:
           server: 192.168.28.40
+
+images:
+  - name: khanonci/oai-reverse-proxy:latest
+    newName: lttviet/oai
+    newTag: v20250226
