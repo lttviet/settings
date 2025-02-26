@@ -25,7 +25,7 @@ spec:
           effect: NoSchedule
       containers:
         - name: blocky
-          image: spx01/blocky:v0.24
+          image: spx01/blocky:v0.25
           env:
             - name: TZ
               value: America/New_York

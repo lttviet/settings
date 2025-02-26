@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: sillytavern
-          image: ghcr.io/sillytavern/sillytavern:1.12.10
+          image: ghcr.io/sillytavern/sillytavern:1.12.12
           env:
             - name: TZ
               value: America/New_York
