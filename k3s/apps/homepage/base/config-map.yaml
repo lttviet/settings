@@ -97,7 +97,7 @@ data:
 
     - GitOps:
         - Argo CD:
-            icon: argocd
+            icon: argo-cd
             href: https://argocd.local.lttviet.com
             description: Argo CD
             siteMonitor: https://argocd.local.lttviet.com
