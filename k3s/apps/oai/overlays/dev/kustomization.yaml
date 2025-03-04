@@ -20,4 +20,4 @@ patches:
 images:
   - name: khanonci/oai-reverse-proxy:latest
     newName: lttviet/oai
-    newTag: v20250226
+    newTag: v20250303
