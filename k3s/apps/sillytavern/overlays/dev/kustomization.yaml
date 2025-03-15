@@ -29,4 +29,5 @@ patches:
           server: 192.168.28.40
 
 images:
-  - name: ghcr.io/sillytavern/sillytavern:1.12.13
+  - name: ghcr.io/sillytavern/sillytavern:1.12.12
+    newTag: 1.12.13
