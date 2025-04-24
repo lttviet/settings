@@ -7,3 +7,4 @@ helmCharts:
     version: 2.1.2
     releaseName: reloader
     namespace: default
+    includeCRDs: true
