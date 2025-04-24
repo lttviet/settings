@@ -1,4 +1,4 @@
-# use local dns for *.local.lttviet.com
+# use router dns for *.local.lttviet.com
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -7,5 +7,5 @@ metadata:
 data:
   lttviet.server: |
     local.lttviet.com.:53 {
-      forward . 192.168.1.30
+      forward . 192.168.1.1
     }

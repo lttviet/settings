@@ -29,6 +29,8 @@ spec:
           env:
             - name: TZ
               value: America/New_York
+            - name: HOMEPAGE_ALLOWED_HOSTS
+              value: home.local.lttviet.com
           ports:
             - name: http
               containerPort: 3000
