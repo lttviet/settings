@@ -7,5 +7,5 @@ metadata:
 data:
   lttviet.server: |
     local.lttviet.com.:53 {
-      forward . 192.168.1.31
+      forward . 192.168.1.30
     }
