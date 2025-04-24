@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: oai
-          image: khanonci/oai-reverse-proxy:latest
+          image: repo/oai:latest
           env:
             - name: TZ
               value: America/New_York

@@ -27,3 +27,7 @@ patches:
       spec:
         nfs:
           server: 192.168.1.40
+
+images:
+  - name: deluan/navidrome:0.54.5
+    newTag: 0.55.2

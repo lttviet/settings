@@ -3,3 +3,7 @@ kind: Kustomization
 
 resources:
   - ../../base
+
+images:
+  - name: cloudflare/cloudflared:2025.2.0
+    newTag: 2025.4.0

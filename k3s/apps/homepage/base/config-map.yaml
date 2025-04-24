@@ -85,15 +85,15 @@ data:
     - Network:
         - proxmox:
             icon: proxmox
-            href: https://homelab1.local.lttviet.com:8006
+            href: https://192.168.1.10:8006
             description: hypervisor
-            siteMonitor: https://192.168.0.107:8006
+            siteMonitor: https://192.168.1.10:8006
 
         - router:
             icon: router
-            href: http://192.168.0.1
-            description: tp-link
-            siteMonitor: https://192.168.0.1
+            href: https://192.168.1.1
+            description: openwrt
+            siteMonitor: https://192.168.1.1
 
     - GitOps:
         - Argo CD:
