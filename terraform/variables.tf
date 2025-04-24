@@ -82,21 +82,3 @@ variable "k3s_nodes" {
     error_message = "Invalid role. Must be 'server' or 'agent'."
   }
 }
-
-# variable "tailscale_nodes" {
-#   type = map(object({
-#     pve_node = string
-#   }))
-#   description = "Map of tailscale nodes to configuration"
-#   default = {
-#     ts1 = {
-#       pve_node = "homelab1"
-#     },
-#     ts2 = {
-#       pve_node = "homelab2"
-#     },
-#     ts3 = {
-#       pve_node = "homelab3"
-#     }
-#   }
-# }
