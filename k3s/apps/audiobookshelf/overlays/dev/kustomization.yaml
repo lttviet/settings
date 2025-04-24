@@ -15,7 +15,7 @@ patches:
         name: audiobooks
       spec:
         nfs:
-          server: 192.168.28.40
+          server: 192.168.1.40
   - target:
       kind: PersistentVolume
       name: podcasts
@@ -26,7 +26,7 @@ patches:
         name: podcasts
       spec:
         nfs:
-          server: 192.168.28.40
+          server: 192.168.1.40
   - target:
       kind: PersistentVolume
       name: configs
@@ -37,7 +37,7 @@ patches:
         name: configs
       spec:
         nfs:
-          server: 192.168.28.40
+          server: 192.168.1.40
   - target:
       kind: PersistentVolume
       name: metadata
@@ -48,4 +48,8 @@ patches:
         name: metadata
       spec:
         nfs:
-          server: 192.168.28.40
+          server: 192.168.1.40
+
+images:
+  - name: ghcr.io/advplyr/audiobookshelf:2.19.5
+    newTag: 2.20.0

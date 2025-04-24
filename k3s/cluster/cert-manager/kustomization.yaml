@@ -1,8 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-resources:
-  - https://github.com/cert-manager/cert-manager/releases/download/v1.17.0/cert-manager.yaml
+helmCharts:
+  - name: cert-manager
+    repo: https://charts.jetstack.io
+    version: 1.17.2
+    releaseName: cert-manager
+    namespace: cert-manager
+    includeCRDs: true
 
 # https://github.com/argoproj/argo-cd/issues/6728
 patches:

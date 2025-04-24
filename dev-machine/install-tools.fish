@@ -31,14 +31,14 @@ echo 'Installing k3s tools'
 sudo snap install --classic opentofu kubectl helm
 
 ## ArgoCD
-set ARGO_VERSION v2.14.0-rc3
+set ARGO_VERSION v2.14.11
 echo "Installing ArgoCD CLI version ${ARGO_VERSION}..."
 curl -sSL -o /tmp/argocd-linux-amd64 "https://github.com/argoproj/argo-cd/releases/download/${ARGO_VERSION}/argocd-linux-amd64"
 sudo install -m 555 /tmp/argocd-linux-amd64 /usr/local/bin/argocd
 rm /tmp/argocd-linux-amd64
 
 ## K9s
-set K9S_VERSION v0.32.7
+set K9S_VERSION v0.50.4
 echo "Installing K9s version ${K9S_VERSION}..."
 curl -sSL -o /tmp/k9s.deb "https://github.com/derailed/k9s/releases/download/${K9S_VERSION}/k9s_linux_amd64.deb"
 sudo apt install -y /tmp/k9s.deb

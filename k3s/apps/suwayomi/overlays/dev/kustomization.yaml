@@ -15,4 +15,8 @@ patches:
         name: suwayomi
       spec:
         nfs:
-          server: 192.168.28.40
+          server: 192.168.1.40
+
+images:
+  - name: ghcr.io/suwayomi/tachidesk:v1.1.1-r1689
+    newTag: v2.0.1727

@@ -15,7 +15,7 @@ patches:
         name: navidrome
       spec:
         nfs:
-          server: 192.168.28.40
+          server: 192.168.1.40
   - target:
       kind: PersistentVolume
       name: music
@@ -26,4 +26,8 @@ patches:
         name: music
       spec:
         nfs:
-          server: 192.168.28.40
+          server: 192.168.1.40
+
+images:
+  - name: deluan/navidrome:0.54.5
+    newTag: 0.55.2
