@@ -15,7 +15,7 @@ patches:
         name: sillytavern-config
       spec:
         nfs:
-          server: 192.168.28.40
+          server: 192.168.1.40
   - target:
       kind: PersistentVolume
       name: sillytavern-data
@@ -26,7 +26,7 @@ patches:
         name: sillytavern-data
       spec:
         nfs:
-          server: 192.168.28.40
+          server: 192.168.1.40
 
 images:
   - name: ghcr.io/sillytavern/sillytavern:1.12.12
