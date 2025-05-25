@@ -20,4 +20,4 @@ patches:
 images:
   - name: repo/oai:latest
     newName: lttviet/oai
-    newTag: v20250303
+    newTag: v20250525
