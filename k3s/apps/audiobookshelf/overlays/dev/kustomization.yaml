@@ -52,4 +52,4 @@ patches:
 
 images:
   - name: ghcr.io/advplyr/audiobookshelf:2.19.5
-    newTag: 2.23.0
+    newTag: 2.25.1
