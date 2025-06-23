@@ -19,4 +19,4 @@ patches:
 
 images:
   - name: ghcr.io/suwayomi/tachidesk:v1.1.1-r1689
-    newTag: v2.0.1754
+    newTag: v2.0.1809
