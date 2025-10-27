@@ -30,4 +30,4 @@ patches:
 
 images:
   - name: ghcr.io/sillytavern/sillytavern:1.12.12
-    newTag: staging
+    newTag: 1.13.5
