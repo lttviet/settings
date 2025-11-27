@@ -103,12 +103,6 @@ data:
             siteMonitor: https://argocd.local.lttviet.com
 
     - Apps:
-        - oai:
-            icon: bookstack
-            href: https://oai.local.lttviet.com
-            description: LLM reverse proxy
-            siteMonitor: https://oai.local.lttviet.com
-
         - sillytavern:
             icon: bookstack
             href: https://tavern.local.lttviet.com
