@@ -6,4 +6,4 @@ resources:
 
 images:
   - name: cloudflare/cloudflared:2025.2.0
-    newTag: 2025.11.1
+    newTag: 2026.2.0
