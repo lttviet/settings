@@ -6,7 +6,7 @@ terraform {
     }
     local = {
       source  = "hashicorp/local"
-      version = "~> 2.6.0"
+      version = "~> 2.8.0"
     }
     sops = {
       source  = "carlpett/sops"
