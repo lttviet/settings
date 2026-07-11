@@ -30,4 +30,4 @@ patches:
 
 images:
   - name: deluan/navidrome:0.54.5
-    newTag: 0.61.2
+    newTag: 0.63.2
