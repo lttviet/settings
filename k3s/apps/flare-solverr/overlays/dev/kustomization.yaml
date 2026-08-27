@@ -6,4 +6,4 @@ resources:
 
 images:
   - name: ghcr.io/flaresolverr/flaresolverr:v3.4.6
-    newTag: v3.4.6
+    newTag: v3.5.0
